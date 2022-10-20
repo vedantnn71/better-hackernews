@@ -11,9 +11,8 @@ export type Story = {
   text?: string;
   type?: string;
   kids?: number[];
-}
+};
 
 export interface TopPageLoad extends PageLoad {
   stories: Story[];
 }
-
