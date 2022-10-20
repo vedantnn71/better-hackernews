@@ -1,27 +1,8 @@
 import { TOP_STORIES_URL, STORY_URL } from "$lib/constants";
 import axios from "axios";
+import type { TopPageLoad, Story } from "./types";
 
-type Story = {
-  id: number;
-  title: string;
-  url: string;
-  by: string;
-  time: number;
-  score: number;
-  descendants: number;
-  text?: string;
-  type?: string;
-}
-
-type Stories = Story[];
-
-type PageLoad = {
-  props: {
-    stories: Stories;
-  };
-};
-
-export async function load(): Promise<PageLoad> {
+export const load: TopPageLoad = async () => {
   const storiesId = await axios.get(TOP_STORIES_URL);
   const fetchedStories = await Promise.all(
     storiesId
@@ -29,12 +10,10 @@ export async function load(): Promise<PageLoad> {
       .slice(0, 10)
       .map((id: number) => axios.get(`${STORY_URL}${id}.json`)
   ));
-  const stories = fetchedStories.map((story) => story.data);
+  const stories: Story[] = fetchedStories.map((story) => story.data);
 
   return {
-    props: {
-      stories,
-    },
+    stories,
   };
 }
 
