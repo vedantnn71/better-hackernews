@@ -1,4 +1,4 @@
-<div class="flex items-center gap-4 text-xl text-gray-900 font-bold">
+<div class="flex items-center gap-4 text-xl text-gray-900 dark:text-gray-100 font-bold">
   <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
     <rect width="36" height="36" rx="6" fill="#F97316" />
     <path

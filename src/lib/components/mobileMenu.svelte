@@ -1,20 +1,36 @@
-<script>
-  import cx from "classnames";
-  import { isOpen } from "$lib/store";
+<script lang="ts">
+  import { isOpen, toggleTheme, theme } from "$lib/store";
+  import { onDestroy } from 'svelte';
 
+  let currentTheme = "light";
   let open = false;
 
+  const unsubscribeTheme = theme.subscribe((val) => {
+    currentTheme = val;
+  });
+
+  const unsusbscribeOpen = isOpen.subscribe((val) => {
+    open = val;
+  });
+
   const links = {
-    Top: "/top",
+    Top: "/",
     New: "/new",
     Show: "/show",
     Ask: "/ask",
     Jobs: "/jobs"
   };
 
-  isOpen.subscribe((val) => {
-    open = val;
-  });
+  function isActive(href: string) {
+    if (typeof window === "undefined"){
+      return;
+    }
+
+    return href === window.location.pathname;
+  }
+
+  onDestroy(unsubscribeTheme);
+  onDestroy(unsusbscribeOpen);
 </script>
 
 {#if open}
@@ -23,19 +39,22 @@
       {#each Object.entries(links) as [name, href]}
         <a
           {href}
-          class={cx(
-            "text-gray-800 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-xl text-base font-medium",
-            href === (typeof window !== "undefined" ? window.location.pathname : false) &&
-              "bg-gray-800 text-white"
-          )}
+          class="text-gray-800 hover:bg-gray-700 hover:text-gray-100 dark:text-gray-200 block px-3 py-2 rounded-xl text-base font-medium"
+          class:bg-gray-800 = {isActive(href)}
+          class:text-gray-100 = {isActive(href)}
         >
           {name}
         </a>
       {/each}
 
-      <button class="btn btn-dark w-full">
+      <button class="btn btn-dark w-full" on:click={toggleTheme}>
         <div class="gg-moon" />
-        Light Mode
+
+        {#if currentTheme === "dark"}
+          <span class="ml-2">Light</span>
+        {:else}
+          <span class="ml-2">Dark</span>
+        {/if}
       </button>
     </div>
   </div>
