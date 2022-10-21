@@ -22,7 +22,9 @@
 </script>
 
 <div class="flex items-center w-full py-4 px-8 border-b border-gray-300 dark:border-gray-800">
-  <Logo />
+  <a href="/">
+    <Logo />
+  </a>
 
   <div class="hidden md:flex justify-center items-center ml-auto gap-8">
     {#each Object.entries(links) as [name, href]}
