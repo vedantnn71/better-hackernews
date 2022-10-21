@@ -1,10 +1,10 @@
 <script lang="ts">
   import StoryCard from "$lib/components/storyCard.svelte";
   import Loading from "$lib/components/loading.svelte";
-  import { getAskStories } from "$lib/api";
+  import { getStories } from "$lib/api";
   import { useQuery } from "@sveltestack/svelte-query";
 
-  const storiesQuery = useQuery("ask-stories", () => getAskStories());
+  const storiesQuery = useQuery("ask-stories", () => getStories("ask"));
 </script>
 
 <div class="m-4 flex flex-col gap-4">
