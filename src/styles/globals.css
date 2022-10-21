@@ -30,6 +30,10 @@ html {
   @apply scroll-smooth;
 }
 
+body {
+  @apply selection:bg-orange-200 dark:selection:bg-orange-900;
+}
+
 a {
   @apply break-words;
 }
