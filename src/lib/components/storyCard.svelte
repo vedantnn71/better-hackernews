@@ -50,7 +50,7 @@
       <p>{toTitleCase(dayjs(story.time * 1000).fromNow(true))} Ago</p>
       <p class="hidden md:inline">•</p>
 
-      <p class="hidden md:inline">{story.kids?.length} Comments</p>
+      <p class="hidden md:inline">{story.descendants} Comments</p>
       <p class="hidden md:inline">•</p>
 
       <p class="hidden md:inline">By {story.by}</p>
