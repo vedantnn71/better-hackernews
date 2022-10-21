@@ -2,6 +2,7 @@
   import Logo from "./logo.svelte";
   import MobileMenu from "./mobileMenu.svelte";
   import { isOpen } from "$lib/store";
+  import { toggleDarkMode } from "$lib/utils";
 
   const links = {
     Top: "/top",
@@ -12,7 +13,7 @@
   };
 </script>
 
-<div class="flex items-center w-full py-4 px-8 border-b border-gray-300">
+<div class="flex items-center w-full py-4 px-8 border-b border-gray-300 dark:border-gray-800">
   <Logo />
 
   <div class="hidden md:flex justify-center items-center ml-auto gap-8">
@@ -22,7 +23,7 @@
 
     <div class="h-4 w-px bg-gray-300" />
 
-    <button class="btn btn-dark py-3 px-5">
+    <button class="btn btn-dark py-3 px-5" on:click={toggleDarkMode}>
       <div class="gg-moon" />
       Light Mode
     </button>
