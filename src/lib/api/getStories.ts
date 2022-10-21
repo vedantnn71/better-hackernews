@@ -9,7 +9,7 @@ import {
 import type { Story } from "$lib/types";
 import axios from "axios";
 
-type StoryType = "top" | "new" | "ask" | "show" | "job";
+type StoryType = "top" | "new" | "ask" | "show" | "jobs";
 
 export async function getStories(storyType: StoryType = "top"): Promise<Story[]> {
   const url = getUrl(storyType);
@@ -32,7 +32,7 @@ function getUrl(storyType: StoryType) {
       return ASK_STORIES_URL;
     case "show":
       return SHOW_STORIES_URL;
-    case "job":
+    case "jobs":
       return JOB_STORIES_URL;
   }
 }
