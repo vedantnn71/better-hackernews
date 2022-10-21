@@ -1,75 +1,76 @@
 <script lang="ts">
   import Comment from "$lib/components/comment.svelte";
   import { getComments, getStory } from "$lib/api";
+  import { useQuery } from "@sveltestack/svelte-query";
   import type { PageData } from "./$types";
   import dayjs from "dayjs";
+  import type { Story } from "$lib/types";
 
   export let data: PageData = {
     id: ""
   };
 
-  let story = getStory(+data.id);
-  let comments = getComments(+data.id);
+  let storyQuery = useQuery<Story>("story", () => getStory(+data.id));
+  let commentsQuery = useQuery<Story[]>("comments", () => getComments(+data.id));
 </script>
 
 <div class="mx-4 py-6 flex flex-col gap-4">
-  {#await story}
+  {#if $storyQuery.isLoading}
     <div class="mx-4 font-medium text-gray-800 dark:text-gray-200">Loading...</div>
+  {/if}
 
-  {:then story}
+  {#if $storyQuery.data}
     <div class="mx-4 text-gray-800 dark:text-gray-200">
       <div class="flex gap-4 items-top">
-        {#if story.title}
-          <a href={story.url || "#"} class="text-xl font-medium md:text-2xl">{story.title}</a>
+        {#if $storyQuery.data.title}
+          <a href={$storyQuery.data.url || "#"} class="text-xl font-medium md:text-2xl"
+            >{$storyQuery.data.title}</a
+          >
         {/if}
       </div>
 
       <div class="text-gray-600 dark:text-gray-400">
         <div class="items-center text-sm mt-3 text-base">
-          {#if story.points}
-            <span>{story.score}</span>
+          {#if $storyQuery.data.points}
+            <span>{$storyQuery.data.score}</span>
             <span>Points</span>
             <span>•</span>
           {/if}
 
           <span>By</span>
-          <span>{story.by}</span>
+          <span>{$storyQuery.data.by}</span>
           <span>•</span>
 
-          <span>{dayjs(story.time * 1000).format("DD MMM YYYY")}</span>
-          {#if story.descendants}
+          <span>{dayjs($storyQuery.data.time * 1000).format("DD MMM YYYY")}</span>
+          {#if $storyQuery.data.descendants}
             <span>•</span>
-            <span>{story.descendants}</span>
+            <span>{$storyQuery.data.descendants}</span>
             <span>Comments</span>
           {/if}
         </div>
       </div>
 
-      {#if story.text}
-        <div class="prose max-w-none mt-3 text-base text-gray-700 dark:text-gray-300 md:text-lg">{@html story.text}</div>
-      {/if}   
+      {#if $storyQuery.data.text}
+        <div class="prose max-w-none mt-3 text-base text-gray-700 dark:text-gray-300 md:text-lg">
+          {@html $storyQuery.data.text}
+        </div>
+      {/if}
     </div>
 
-  {:catch error}
-    <div class="text-red-500">
-      {error.message}
-    </div>
-  {/await}
+    {#if $commentsQuery.isLoading}
+      <div class="mx-4 font-medium text-gray-800 dark:text-gray-200">Loading...</div>
+    {/if}
 
-  {#await comments}
-    <div class="mx-4 font-medium text-gray-800 dark:text-gray-200">Loading...</div>
-    
-    {:then comments}
-      {#if typeof comments !== 'undefined'}
-        {#each comments as comment, index}
-          <Comment 
-            nextCommentId={comments[index + 1]?.id}
-            prevCommentId={comments[index - 1]?.id}
+    {#if $commentsQuery}
+      {#if typeof $commentsQuery.data !== "undefined"}
+        {#each $commentsQuery.data as comment, index}
+          <Comment
+            nextCommentId={$commentsQuery.data[index + 1]?.id}
+            prevCommentId={$commentsQuery.data[index - 1]?.id}
             {comment}
           />
         {/each}
       {/if}
-
-  {/await}
+    {/if}
+  {/if}
 </div>
-
