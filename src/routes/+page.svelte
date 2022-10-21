@@ -1,12 +1,9 @@
 <script lang="ts">
-  import Nav from "$lib/components/nav.svelte";
   import StoryCard from "$lib/components/storyCard.svelte";
-  import { getTopStories } from "$lib/utils";
+  import { getTopStories } from "$lib/api";
 
   let stories = getTopStories();
 </script>
-
-<Nav />
 
 <div class="m-4 flex flex-col gap-4">
   {#await stories}
