@@ -22,7 +22,7 @@
       >
         <div class="mt-1 gap-2 flex font-medium text-gray-800 items-center">
           <h3>
-            {index}
+            {index + 1}
           </h3>
 
           <svg
