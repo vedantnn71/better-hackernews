@@ -1,7 +1,7 @@
 <script lang="ts">
   import Nav from "$lib/components/nav.svelte";
-  import { toTitleCase, trimUrl } from "$lib/utils";
   import type { TopPageLoad } from "./types";
+  import { toTitleCase, trimUrl } from "$lib/utils";
   import dayjs from "dayjs";
 
   export let data: TopPageLoad;
