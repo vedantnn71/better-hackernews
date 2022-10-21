@@ -34,7 +34,7 @@
     </svg>
   </div>
 
-  <div>
+  <a href={`/story/${story.id}`}>
     <h1 class="font-medium text-md text-gray-800 dark:text-gray-200 md:text-lg">
       {story.title}
 
@@ -55,6 +55,6 @@
 
       <p class="hidden md:inline">By {story.by}</p>
     </div>
-  </div>
+  </a>
 </a>
 

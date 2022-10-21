@@ -1,10 +1,11 @@
 <script>
-  import "../styles/globals.css";
-  import "../styles/fonts.css";
-  import relativeTime from "dayjs/plugin/relativeTime";
-  import dayjs from "dayjs";
+  import Nav from "$lib/components/nav.svelte";
   import { theme } from "$lib/store";
   import { onDestroy } from 'svelte';
+  import relativeTime from "dayjs/plugin/relativeTime";
+  import dayjs from "dayjs";
+  import "../styles/globals.css";
+  import "../styles/fonts.css";
 
   const unsubscribeTheme = theme.subscribe((currentTheme) => {
     if (typeof window !== "undefined") {
@@ -25,6 +26,7 @@
 </script>
 
 
-<div class="bg-gray-50 dark:bg-gray-900 h-screen">
+<div class="bg-gray-100 dark:bg-gray-900 min-h-screen">
+  <Nav />
   <slot />
 </div>

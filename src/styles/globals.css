@@ -25,3 +25,12 @@
     @apply flex items-center gap-2 font-medium rounded-xl py-2 px-4;
   }
 }
+
+html {
+  @apply scroll-smooth;
+}
+
+a {
+  @apply break-words;
+}
+
