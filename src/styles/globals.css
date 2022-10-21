@@ -34,6 +34,14 @@ body {
   @apply selection:bg-orange-200 dark:selection:bg-orange-900;
 }
 
+body::-webkit-scrollbar {
+  @apply w-2 bg-gray-200 dark:bg-gray-800;
+}
+
+body::-webkit-scrollbar-thumb {
+  @apply bg-gray-500 dark:bg-gray-500 px-2 rounded;
+}
+
 a {
   @apply break-words;
 }
