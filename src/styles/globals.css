@@ -29,3 +29,8 @@
 html {
   @apply scroll-smooth;
 }
+
+a {
+  @apply break-words;
+}
+
