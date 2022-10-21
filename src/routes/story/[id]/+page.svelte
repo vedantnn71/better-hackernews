@@ -1,5 +1,6 @@
 <script lang="ts">
   import Comment from "$lib/components/comment.svelte";
+  import Loading from "$lib/components/loading.svelte";
   import { getComments, getStory } from "$lib/api";
   import { useQuery } from "@sveltestack/svelte-query";
   import type { PageData } from "./$types";
@@ -15,8 +16,8 @@
 </script>
 
 <div class="mx-4 py-6 flex flex-col gap-4">
-  {#if $storyQuery.isLoading}
-    <div class="mx-4 font-medium text-gray-800 dark:text-gray-200">Loading...</div>
+  {#if $storyQuery.isLoading || $commentsQuery.isLoading}
+    <Loading />
   {/if}
 
   {#if $storyQuery.data}

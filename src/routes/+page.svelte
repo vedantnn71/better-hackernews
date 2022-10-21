@@ -1,5 +1,6 @@
 <script lang="ts">
   import StoryCard from "$lib/components/storyCard.svelte";
+  import Loading from "$lib/components/loading.svelte";
   import { getTopStories } from "$lib/api";
   import { useQuery } from "@sveltestack/svelte-query";
 
@@ -8,7 +9,7 @@
 
 <div class="m-4 flex flex-col gap-4">
   {#if $storiesQuery.isLoading}
-    <div class="mx-4 font-medium text-gray-800 dark:text-gray-200">Loading...</div>
+    <Loading />
   {/if}
 
   {#if $storiesQuery.isError}
