@@ -15,12 +15,19 @@
   let commentsQuery = useQuery<Story[]>("comments", () => getComments(+data.id));
 </script>
 
+<svelte:head>
+  {#if $storyQuery.isSuccess}
+    <title>Hacker News − {$storyQuery.data.title}</title>
+    <meta property="og:title" content="Hacker News − {$storyQuery.data.title}">
+  {/if}
+</svelte:head>
+
 <div class="mx-4 py-6 flex flex-col gap-4">
   {#if $storyQuery.isLoading || $commentsQuery.isLoading}
     <Loading />
   {/if}
 
-  {#if $storyQuery.data}
+  {#if $storyQuery.isSuccess}
     <div class="mx-4 text-gray-800 dark:text-gray-200">
       <div class="flex gap-4 items-top">
         {#if $storyQuery.data.title}

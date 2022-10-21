@@ -7,6 +7,11 @@
   const storiesQuery = useQuery("new-stories", () => getStories("new"));
 </script>
 
+<svelte:head>
+  <title>Hacker News − New</title>
+  <meta property="og:title" content="Hacker News − New">
+</svelte:head>
+
 <div class="m-4 flex flex-col gap-4">
   {#if $storiesQuery.isLoading}
     <Loading />

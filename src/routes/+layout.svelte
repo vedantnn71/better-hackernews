@@ -25,8 +25,29 @@
   
   onDestroy(unsubscribeTheme);
   dayjs.extend(relativeTime);
+
+  let title = "Hacker News";
+  let url = "https://better-hackernews.vercel.app/";
+  let description = "Better hacker news − hacker news, reimagined.";
+  let image = "https://raw.githubusercontent.com/vedantnn71/better-hackernews/main/static/social.png";
+
+  if (typeof window !== "undefined") {
+    url = window.location.href;
+  }
 </script>
 
+<svelte:head>
+  <title>Hacker News</title>
+  <meta property="og:title" content={title}>
+  <meta property="og:site_name" content={title}>
+  <meta property="og:url" content={url}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={image}>
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="app">
+  <meta name="twitter:site" content="@vedantnn7">
+  <meta name="twitter:description" content={description}>
+</svelte:head>
 
 <QueryClientProvider client={queryClient}>
   <div class="bg-gray-100 dark:bg-gray-900 min-h-screen">

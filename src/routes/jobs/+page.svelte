@@ -7,6 +7,11 @@
   const jobsQuery = useQuery("jobs", () => getStories("jobs"));
 </script>
 
+<svelte:head>
+  <title>Hacker News − Jobs</title>
+  <meta property="og:title" content="Hacker News − Jobs">
+</svelte:head>
+
 <div class="m-4 flex flex-col gap-4">
   {#if $jobsQuery.isLoading}
     <Loading />
