@@ -9,5 +9,6 @@ export type Story = {
   text?: string;
   type?: string;
   kids?: number[];
+  points?: number;
 };
 
