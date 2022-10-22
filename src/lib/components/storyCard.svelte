@@ -43,7 +43,7 @@
         {$storyQuery.data.title}
 
         {#if $storyQuery.data.url}
-          <span class="font-normal text-gray-400">{trimUrl($storyQuery.data.url)}</span>
+          <span class="font-normal text-gray-600 dark:text-gray-400">{trimUrl($storyQuery.data.url)}</span>
         {/if}
       </h1>
 
