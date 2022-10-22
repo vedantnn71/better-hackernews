@@ -2,6 +2,8 @@
   import Logo from "./logo.svelte";
   import MobileMenu from "./mobileMenu.svelte";
   import { isOpen, toggleTheme, theme } from "$lib/store";
+  import { links } from "$lib/constants";
+  import { toTitleCase } from "$lib/utils";
   import { onDestroy } from "svelte";
 
   let currentTheme = "light";
@@ -9,14 +11,6 @@
   const unsubscribeTheme = theme.subscribe((val) => {
     currentTheme = val;
   });
-
-  const links = {
-    Top: "/",
-    New: "/new",
-    Show: "/show",
-    Ask: "/ask",
-    Jobs: "/jobs"
-  };
 
   onDestroy(unsubscribeTheme);
 </script>
@@ -31,7 +25,7 @@
       <a
         {href}
         class="text-gray-800 hover:text-gray-700 dark:text-gray-200 dark:hover:text-gray-300"
-        >{name}</a
+        >{toTitleCase(name)}</a
       >
     {/each}
 

@@ -1,5 +1,7 @@
 <script lang="ts">
   import { isOpen, toggleTheme, theme } from "$lib/store";
+  import { links } from "$lib/constants";
+  import { toTitleCase } from "$lib/utils";
   import { onDestroy } from "svelte";
 
   let currentTheme = "light";
@@ -12,14 +14,6 @@
   const unsusbscribeOpen = isOpen.subscribe((val) => {
     open = val;
   });
-
-  const links = {
-    Top: "/",
-    New: "/new",
-    Show: "/show",
-    Ask: "/ask",
-    Jobs: "/jobs"
-  };
 
   function isActive(href: string) {
     if (typeof window === "undefined") {
@@ -44,7 +38,7 @@
           class:bg-gray-800={isActive(href)}
           class:text-gray-100={isActive(href)}
         >
-          {name}
+          {toTitleCase(name)}
         </a>
       {/each}
 
