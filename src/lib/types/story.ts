@@ -12,3 +12,5 @@ export type Story = {
   points?: number;
 };
 
+export type StoryKey = "top" | "new" | "ask" | "show" | "jobs";
+

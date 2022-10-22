@@ -1,25 +1,22 @@
 import {
-  STORY_URL,
   ASK_STORIES_URL,
   NEW_STORIES_URL,
   TOP_STORIES_URL,
   JOB_STORIES_URL,
   SHOW_STORIES_URL
 } from "$lib/constants";
-import type { Story } from "$lib/types";
+import type { StoryKey } from "$lib/types";
 import axios from "axios";
 
-type StoryType = "top" | "new" | "ask" | "show" | "jobs";
-
-export async function getStories(storyType: StoryType = "top", pageParam: number = 1): Promise<number[]> {
-  const url = getUrl(storyType);
+export async function getStories(storyKey: StoryKey = "top", pageParam: number = 1): Promise<number[]> {
+  const url = getUrl(storyKey);
   const resp = await axios.get<number[]>(url);
   const stories = resp.data.slice(0, pageParam);
 
   return stories;
 }
 
-function getUrl(storyType: StoryType) {
+function getUrl(storyType: StoryKey) {
   switch (storyType) {
     case "top":
       return TOP_STORIES_URL;
