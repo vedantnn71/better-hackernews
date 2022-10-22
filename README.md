@@ -3,11 +3,13 @@
 Better hacker news is a try to improve experience of using hacker news. It uses the official [hacker news api](//github.com/HackerNews/API) to pull up the data.
 
 ### Pros
+
 - ☑️ Amazing ui/ux
 - ☑️ Completely responsive
 - ☑️ Fast and snappy
 
 ### Caveats
+
 - ⚒ Currently in work in progress
 - ❌ You can't upload or reply
 
