@@ -9,12 +9,12 @@ export async function getComments(id: number) {
     return [story.data];
   }
 
-  let comments: Story[] = [];
-
-  for (const commentId of story.data.kids) {
-    const comment: AxiosResponse<Story> = await axios.get(`${STORY_URL}${commentId}.json`);
-    comments.push(comment.data);
-  }
+  const comments = await Promise.all(
+    story.data.kids.map(async (id) => {
+      const comment = await axios.get(`${STORY_URL}${id}.json`);
+      return comment.data;
+    })
+  );
 
   return comments;
 }
