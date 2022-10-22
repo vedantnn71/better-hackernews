@@ -16,7 +16,7 @@
     href={$storyQuery.data.url}
     rel="noopener noreferrer"
     target="_blank"
-    class="flex items-start gap-4 rounded-2xl border border-gray-300 p-5 dark:border-gray-800"
+    class="flex items-start gap-4 rounded-2xl bg-gray-100 dark:bg-gray-900 border border-gray-300 px-5 py-4 md:mx-4 dark:border-gray-800"
   >
     <div class="mt-px flex items-center gap-2 font-medium text-gray-800 dark:text-gray-300">
       <h3>

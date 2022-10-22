@@ -15,7 +15,7 @@
   onDestroy(unsubscribeTheme);
 </script>
 
-<div class="flex w-full items-center border-b border-gray-300 py-4 px-8 dark:border-gray-800">
+<div class="flex w-full items-center border-b border-gray-300 py-4 px-6 md:px-8 dark:border-gray-800">
   <a href="/">
     <Logo />
   </a>
