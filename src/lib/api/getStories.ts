@@ -11,13 +11,10 @@ import axios from "axios";
 
 type StoryType = "top" | "new" | "ask" | "show" | "jobs";
 
-export async function getStories(storyType: StoryType = "top"): Promise<Story[]> {
+export async function getStories(storyType: StoryType = "top", pageParam: number = 1): Promise<number[]> {
   const url = getUrl(storyType);
-  const storiesId = await axios.get(url);
-  const fetchedStories = await Promise.all(
-    storiesId.data.slice(0, 10).map((id: number) => axios.get(`${STORY_URL}${id}.json`))
-  );
-  const stories: Story[] = fetchedStories.map((story) => story.data);
+  const resp = await axios.get<number[]>(url);
+  const stories = resp.data.slice(0, pageParam);
 
   return stories;
 }
