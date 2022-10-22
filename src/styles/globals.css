@@ -24,6 +24,14 @@
   .btn {
     @apply flex items-center gap-2 rounded-xl py-2 px-4 font-medium;
   }
+
+  .scrollbar::-webkit-scrollbar {
+    @apply w-2 max-h-2 bg-gray-200 dark:bg-gray-800;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-gray-500 dark:bg-gray-500;
+  }
 }
 
 html {
