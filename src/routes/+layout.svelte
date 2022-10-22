@@ -28,7 +28,7 @@
 
   let title = "Hacker News";
   let url = "https://better-hackernews.vercel.app/";
-  let description = "Better hacker news − hacker news, reimagined.";
+  let description = "Better Hacker News — Hacker News just got better.";
   let image =
     "https://raw.githubusercontent.com/vedantnn71/better-hackernews/main/static/social.png";
 
@@ -38,17 +38,21 @@
 </script>
 
 <svelte:head>
-  <title>Hacker News</title>
-  <meta property="og:title" content={title} />
-  <meta property="og:site_name" content={title} />
-  <meta property="og:url" content={url} />
-  <meta property="og:description" content={description} />
-  <meta property="og:image" content={image} />
+  <title>{title}</title>
+  <meta name="title" content={title} />
+  <meta name="description" content={description} />
+
   <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@vedantnn7" />
-  <meta name="twitter:title" content={title} />
-  <meta name="twitter:description" content={description} />
+  <meta property="og:url" content={url} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content="/social.png" />
+
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content={url} />
+  <meta property="twitter:title" content={title} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content="/social.png" />
 </svelte:head>
 
 <QueryClientProvider client={queryClient}>
