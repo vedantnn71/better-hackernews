@@ -31,7 +31,9 @@
     <div class="mx-4 text-gray-800 dark:text-gray-200">
       <div class="items-top flex gap-4">
         {#if $storyQuery.data.title}
-          <a href={$storyQuery.data.url || "#"} class="text-xl font-medium md:text-2xl">{$storyQuery.data.title}</a>
+          <a href={$storyQuery.data.url || "#"} class="text-xl font-medium md:text-2xl"
+            >{$storyQuery.data.title}</a
+          >
         {/if}
       </div>
 

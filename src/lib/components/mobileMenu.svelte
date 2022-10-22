@@ -33,7 +33,7 @@
       {#each Object.entries(links) as [name, href]}
         <a
           {href}
-          on:click={() => (isOpen.set(false))}
+          on:click={() => isOpen.set(false)}
           class="block rounded-xl px-3 py-2 text-base font-medium text-gray-800 hover:bg-gray-700 hover:text-gray-100 dark:text-gray-200"
           class:bg-gray-800={isActive(href)}
           class:text-gray-100={isActive(href)}

@@ -8,7 +8,7 @@ Make sure to have these installed!
 
 - Node < 17.x.x
 - Git
-- Pnpm  
+- Pnpm
 
 # Getting Started
 
