@@ -18,4 +18,3 @@ export async function getComments(id: number) {
 
   return comments;
 }
-

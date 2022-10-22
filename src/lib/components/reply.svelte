@@ -9,7 +9,6 @@
 
 {#await replies}
   <div class="ml-4 font-medium text-gray-800 dark:text-gray-200">Loading...</div>
-
 {:then replies}
   {#if replies.length}
     {#each replies as comment}
@@ -18,7 +17,6 @@
       </div>
     {/each}
   {/if}
-
 {:catch error}
   <div class="text-red-500">
     {error.message}

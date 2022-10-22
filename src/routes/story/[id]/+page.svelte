@@ -18,7 +18,7 @@
 <svelte:head>
   {#if $storyQuery.isSuccess}
     <title>Hacker News − {$storyQuery.data.title}</title>
-    <meta property="og:title" content="Hacker News − {$storyQuery.data.title}">
+    <meta property="og:title" content="Hacker News − {$storyQuery.data.title}" />
   {/if}
 </svelte:head>
 

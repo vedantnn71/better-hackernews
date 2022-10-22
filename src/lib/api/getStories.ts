@@ -8,7 +8,10 @@ import {
 import type { StoryKey } from "$lib/types";
 import axios from "axios";
 
-export async function getStories(storyKey: StoryKey = "top", pageParam: number = 1): Promise<number[]> {
+export async function getStories(
+  storyKey: StoryKey = "top",
+  pageParam: number = 1
+): Promise<number[]> {
   const url = getUrl(storyKey);
   const resp = await axios.get<number[]>(url);
   const stories = resp.data.slice(0, pageParam);

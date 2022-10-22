@@ -2,7 +2,7 @@
   import Logo from "./logo.svelte";
   import MobileMenu from "./mobileMenu.svelte";
   import { isOpen, toggleTheme, theme } from "$lib/store";
-  import { onDestroy } from 'svelte';
+  import { onDestroy } from "svelte";
 
   let currentTheme = "light";
 
@@ -87,11 +87,7 @@
       stroke="currentColor"
       class="w-6 h-6"
     >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M4 6h16M4 12h16M4 18h16"
-      />
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
     </svg>
   </button>
 </div>

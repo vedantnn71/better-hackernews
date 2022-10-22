@@ -13,7 +13,7 @@ const config = {
     alias: {
       $components: "./src/components"
     },
-    adapter: vercel(),
+    adapter: vercel()
   }
 };
 

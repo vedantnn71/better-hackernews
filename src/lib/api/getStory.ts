@@ -6,4 +6,3 @@ export async function getStory(id: number) {
   const story = await axios.get<Story>(`${STORY_URL}${id}.json`);
   return story.data;
 }
-

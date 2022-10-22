@@ -9,18 +9,17 @@ export function toggleTheme() {
       return "dark";
     }
 
-      setLocalStorage("theme", "light");
+    setLocalStorage("theme", "light");
     return "light";
   });
 }
 
-function setLocalStorage (key: string, value: string) {
+function setLocalStorage(key: string, value: string) {
   if (typeof window === "undefined") return;
   localStorage.setItem(key, value);
 }
 
-function getLocalStorage (key: string) {
+function getLocalStorage(key: string) {
   if (typeof window === "undefined") return;
   return localStorage.getItem(key);
 }
-

@@ -13,4 +13,3 @@ export type Story = {
 };
 
 export type StoryKey = "top" | "new" | "ask" | "show" | "jobs";
-

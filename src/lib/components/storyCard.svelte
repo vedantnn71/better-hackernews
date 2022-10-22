@@ -11,7 +11,6 @@
   let storyQuery = useQuery<Story>(["story", id], () => getStory(id));
 </script>
 
-
 {#if $storyQuery.isSuccess}
   <a
     href={$storyQuery.data.url}
@@ -63,4 +62,3 @@
     </a>
   </a>
 {/if}
-
