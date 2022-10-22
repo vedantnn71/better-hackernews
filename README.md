@@ -1,38 +1,24 @@
-# create-svelte
+![github](https://user-images.githubusercontent.com/70624701/197326161-26b1791f-b6dc-4788-b14b-0f40c3084470.svg)
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Better hacker news is a try to improve experience of using hacker news. It uses the official [hacker news api](//github.com/HackerNews/API) to pull up the data.
 
-## Creating a project
+### Tech Stack
+| Tech | Purpose |
+| ------------- | ------------- |
+| Svelte Kit | UI framework |
+| Svelte Query | Library for data fetching |
+| Tailwind cSS | CSS Utility Library |
+| Typescript |  Language
 
-If you're seeing this, you've probably already done this step. Congrats!
-
+### Running locally
+> It is recommended to use the [pnpm](//pnpm.io) package manager for this project.
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
+git clone https://github.com/vedantnn71/better-hackernews 
+cd better-hackernews
 
-# create a new project in my-app
-npm create svelte@latest my-app
+pnpm install
+pnpm dev
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+### Contributing
+Contributions are always welcome, if you find any sort of issue or have something meaningful to contribute just create a pull request and make sure to read the [CONTRIBUTING.md](./CONTRIBUTING.md)
