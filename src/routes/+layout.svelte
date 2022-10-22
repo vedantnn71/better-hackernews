@@ -1,5 +1,6 @@
 <script>
   import Nav from "$lib/components/nav.svelte";
+  import Analytics from "$lib/components/analytics.svelte";
   import { QueryClient, QueryClientProvider } from "@sveltestack/svelte-query";
   import { theme } from "$lib/store";
   import { onDestroy } from "svelte";
@@ -61,3 +62,5 @@
     <slot />
   </div>
 </QueryClientProvider>
+
+<Analytics />
