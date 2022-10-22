@@ -16,9 +16,9 @@
     href={$storyQuery.data.url}
     rel="noopener noreferrer"
     target="_blank"
-    class="p-5 flex items-start gap-4 border border-gray-300 dark:border-gray-800 rounded-2xl"
+    class="flex items-start gap-4 rounded-2xl border border-gray-300 p-5 dark:border-gray-800"
   >
-    <div class="mt-px gap-2 flex font-medium text-gray-800 dark:text-gray-300 items-center">
+    <div class="mt-px flex items-center gap-2 font-medium text-gray-800 dark:text-gray-300">
       <h3>
         {index + 1}
       </h3>
@@ -39,7 +39,7 @@
     </div>
 
     <a href={`/story/${$storyQuery.data.id}`}>
-      <h1 class="font-medium text-md text-gray-800 dark:text-gray-200 md:text-lg">
+      <h1 class="text-md font-medium text-gray-800 dark:text-gray-200 md:text-lg">
         {$storyQuery.data.title}
 
         {#if $storyQuery.data.url}
@@ -47,7 +47,7 @@
         {/if}
       </h1>
 
-      <div class="flex gap-2 text-xs text-gray-500 dark:text-gray-300 mt-1 md:text-sm">
+      <div class="mt-1 flex gap-2 text-xs text-gray-500 dark:text-gray-300 md:text-sm">
         <p>{$storyQuery.data.score} Points</p>
         <p>•</p>
 

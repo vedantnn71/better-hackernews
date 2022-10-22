@@ -17,14 +17,14 @@
 
 <div>
   <div
-    class="flex items-start gap-4 border border-gray-300 dark:border-gray-800 bg-gray-50 dark:bg-gray-800 rounded-2xl mx-4 py-3 px-5"
+    class="mx-4 flex items-start gap-4 rounded-2xl border border-gray-300 bg-gray-50 py-3 px-5 dark:border-gray-800 dark:bg-gray-800"
     id={comment.id.toString()}
   >
     <a
       {href}
       rel="noopener noreferrer"
       target="_blank"
-      class="mt-2 gap-2 flex font-medium text-gray-800 dark:text-gray-300 items-center"
+      class="mt-2 flex items-center gap-2 font-medium text-gray-800 dark:text-gray-300"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -44,22 +44,22 @@
 
     <div class="w-full">
       <div
-        class="flex flex-col md:flex-row gap-2 text-xs text-gray-600 dark:text-gray-400 mt-1 md:text-sm mb-2"
+        class="mt-1 mb-2 flex flex-col gap-2 text-xs text-gray-600 dark:text-gray-400 md:flex-row md:text-sm"
       >
         <p>{comment.by} on {dayjs(comment.time * 1000).format("DD MMM YYYY")}</p>
 
         {#if nextCommentId}
           <p class="hidden md:inline-block">•</p>
           <a
-            class="hidden md:inline-block text-gray-600 dark:text-gray-400"
+            class="hidden text-gray-600 dark:text-gray-400 md:inline-block"
             href={`#${nextCommentId}`}>next</a
           >
         {/if}
 
         {#if prevCommentId}
-          <p class="hidden md:inline-block hidden md:inline-block">•</p>
+          <p class="hidden hidden md:inline-block md:inline-block">•</p>
           <a
-            class="text-gray-600 dark:text-gray-400 hidden md:inline-block"
+            class="hidden text-gray-600 dark:text-gray-400 md:inline-block"
             href={`#${prevCommentId}`}>prev</a
           >
         {/if}
@@ -74,7 +74,7 @@
       </div>
 
       <div
-        class="prose prose-gray max-w-none prose-a:no-underline prose-a:break-all prose-a:text-orange-600 text-base text-gray-700 dark:text-gray-300 gap-4"
+        class="prose prose-gray max-w-none gap-4 text-base text-gray-700 prose-a:break-all prose-a:text-orange-600 prose-a:no-underline dark:text-gray-300"
       >
         {#if comment.text}
           {@html comment.text}
@@ -86,7 +86,7 @@
   </div>
 
   {#if comment.kids && showReplies}
-    <div class="flex flex-col ml-4">
+    <div class="ml-4 flex flex-col">
       {#each comment.kids as replyId}
         <Reply {replyId} />
       {/each}

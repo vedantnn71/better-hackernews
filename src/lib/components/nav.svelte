@@ -21,16 +21,16 @@
   onDestroy(unsubscribeTheme);
 </script>
 
-<div class="flex items-center w-full py-4 px-8 border-b border-gray-300 dark:border-gray-800">
+<div class="flex w-full items-center border-b border-gray-300 py-4 px-8 dark:border-gray-800">
   <a href="/">
     <Logo />
   </a>
 
-  <div class="hidden md:flex justify-center items-center ml-auto gap-8">
+  <div class="ml-auto hidden items-center justify-center gap-8 md:flex">
     {#each Object.entries(links) as [name, href]}
       <a
         {href}
-        class="hover:text-gray-700 text-gray-800 dark:text-gray-200 dark:hover:text-gray-300"
+        class="text-gray-800 hover:text-gray-700 dark:text-gray-200 dark:hover:text-gray-300"
         >{name}</a
       >
     {/each}
@@ -45,7 +45,7 @@
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="w-6 h-6"
+          class="h-6 w-6"
         >
           <path
             stroke-linecap="round"
@@ -61,7 +61,7 @@
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="w-6 h-6"
+          class="h-6 w-6"
         >
           <path
             stroke-linecap="round"
@@ -76,7 +76,7 @@
   </div>
 
   <button
-    class="ml-auto outline-none h-8 dark:text-gray-200 md:hidden"
+    class="ml-auto h-8 outline-none dark:text-gray-200 md:hidden"
     on:click={() => isOpen.update((val) => !val)}
   >
     <svg
@@ -85,7 +85,7 @@
       viewBox="0 0 24 24"
       stroke-width="1.5"
       stroke="currentColor"
-      class="w-6 h-6"
+      class="h-6 w-6"
     >
       <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
     </svg>

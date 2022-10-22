@@ -22,14 +22,14 @@
   {/if}
 </svelte:head>
 
-<div class="mx-4 py-6 flex flex-col gap-4">
+<div class="mx-4 flex flex-col gap-4 py-6">
   {#if $storyQuery.isLoading || $commentsQuery.isLoading}
     <Loading />
   {/if}
 
   {#if $storyQuery.isSuccess}
     <div class="mx-4 text-gray-800 dark:text-gray-200">
-      <div class="flex gap-4 items-top">
+      <div class="items-top flex gap-4">
         {#if $storyQuery.data.title}
           <a href={$storyQuery.data.url || "#"} class="text-xl font-medium md:text-2xl"
             >{$storyQuery.data.title}</a
@@ -38,7 +38,7 @@
       </div>
 
       <div class="text-gray-600 dark:text-gray-400">
-        <div class="items-center text-sm mt-3 text-base">
+        <div class="mt-3 items-center text-sm text-base">
           {#if $storyQuery.data.points}
             <span>{$storyQuery.data.score}</span>
             <span>Points</span>
@@ -59,7 +59,7 @@
       </div>
 
       {#if $storyQuery.data.text}
-        <div class="prose max-w-none mt-3 text-base text-gray-700 dark:text-gray-300 md:text-lg">
+        <div class="prose mt-3 max-w-none text-base text-gray-700 dark:text-gray-300 md:text-lg">
           {@html $storyQuery.data.text}
         </div>
       {/if}

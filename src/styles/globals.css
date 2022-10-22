@@ -22,7 +22,7 @@
 
 @layer utilities {
   .btn {
-    @apply flex items-center gap-2 font-medium rounded-xl py-2 px-4;
+    @apply flex items-center gap-2 rounded-xl py-2 px-4 font-medium;
   }
 }
 
@@ -39,7 +39,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-thumb {
-  @apply bg-gray-500 dark:bg-gray-500 px-2 rounded;
+  @apply rounded bg-gray-500 px-2 dark:bg-gray-500;
 }
 
 a {

@@ -51,7 +51,7 @@
 </svelte:head>
 
 <QueryClientProvider client={queryClient}>
-  <div class="bg-gray-100 dark:bg-gray-900 min-h-screen pb-2">
+  <div class="min-h-screen bg-gray-100 pb-2 dark:bg-gray-900">
     <Nav />
     <slot />
   </div>

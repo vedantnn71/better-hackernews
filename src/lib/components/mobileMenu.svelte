@@ -39,7 +39,7 @@
       {#each Object.entries(links) as [name, href]}
         <a
           {href}
-          class="text-gray-800 hover:bg-gray-700 hover:text-gray-100 dark:text-gray-200 block px-3 py-2 rounded-xl text-base font-medium"
+          class="block rounded-xl px-3 py-2 text-base font-medium text-gray-800 hover:bg-gray-700 hover:text-gray-100 dark:text-gray-200"
           class:bg-gray-800={isActive(href)}
           class:text-gray-100={isActive(href)}
         >
@@ -55,7 +55,7 @@
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-6 h-6"
+            class="h-6 w-6"
           >
             <path
               stroke-linecap="round"
@@ -71,7 +71,7 @@
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-6 h-6"
+            class="h-6 w-6"
           >
             <path
               stroke-linecap="round"
