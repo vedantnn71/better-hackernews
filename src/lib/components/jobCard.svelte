@@ -1,6 +1,7 @@
 <script lang="ts">
   import { toTitleCase, trimUrl } from "$lib/utils";
   import { useQuery } from "@sveltestack/svelte-query";
+  import { fly } from "svelte/transition";
   import { getStory } from "$lib/api";
   import type { Story } from "$lib/types";
   import dayjs from "dayjs";
@@ -17,6 +18,7 @@
     rel="noopener noreferrer"
     target="_blank"
     class="flex items-start gap-4 rounded-2xl border border-gray-300 p-5 dark:border-gray-800"
+    transition:fly={{ x: 0, duration: 500, delay: index * 100 }}
   >
     <div class="mt-px flex items-center gap-2 font-medium text-gray-800 dark:text-gray-300">
       <h3>
@@ -43,7 +45,9 @@
         {$jobsQuery.data.title}
 
         {#if $jobsQuery.data.url}
-          <span class="font-normal text-gray-400">{trimUrl($jobsQuery.data.url)}</span>
+          <span class="font-normal text-gray-600 dark:text-gray-400"
+            >{trimUrl($jobsQuery.data.url)}</span
+          >
         {/if}
       </h1>
 
