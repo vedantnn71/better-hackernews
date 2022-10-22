@@ -45,8 +45,9 @@
   <meta property="og:description" content={description} />
   <meta property="og:image" content={image} />
   <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="app" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@vedantnn7" />
+  <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
 </svelte:head>
 
