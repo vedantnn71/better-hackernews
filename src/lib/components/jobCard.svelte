@@ -1,15 +1,20 @@
 <script lang="ts">
   import { toTitleCase, trimUrl } from "$lib/utils";
+  import { useQuery } from "@sveltestack/svelte-query";
+  import { getStory } from "$lib/api";
   import type { Story } from "$lib/types";
   import dayjs from "dayjs";
 
-  export let story: Story;
   export let index: number;
+  export let id: number;
+
+  let jobsQuery = useQuery<Story>(["jobs", id], () => getStory(id));
 </script>
 
 
+{#if $jobsQuery.isSuccess}
 <a
-  href={story.url}
+  href={$jobsQuery.data.url}
   rel="noopener noreferrer"
   target="_blank"
   class="p-5 flex items-start gap-4 border border-gray-300 dark:border-gray-800 rounded-2xl"
@@ -36,22 +41,22 @@
 
   <div>
     <h1 class="font-medium text-md text-gray-800 dark:text-gray-200 md:text-lg">
-      {story.title}
+      {$jobsQuery.data.title}
 
-      {#if story.url}
-        <span class="font-normal text-gray-400">{trimUrl(story.url)}</span>
+      {#if $jobsQuery.data.url}
+        <span class="font-normal text-gray-400">{trimUrl($jobsQuery.data.url)}</span>
       {/if}
     </h1>
 
     <div class="flex gap-2 text-xs text-gray-500 dark:text-gray-300 mt-1 md:text-sm">
-      <p>{story.score} Points</p>
+      <p>{$jobsQuery.data.score} Points</p>
       <p>•</p>
 
-      <p>{toTitleCase(dayjs(story.time * 1000).fromNow(true))} Ago</p>
+      <p>{toTitleCase(dayjs($jobsQuery.data.time * 1000).fromNow(true))} Ago</p>
       <p class="hidden md:inline">•</p>
 
-      <p class="hidden md:inline">By {story.by}</p>
+      <p class="hidden md:inline">By {$jobsQuery.data.by}</p>
     </div>
   </div>
 </a>
-
+{/if}

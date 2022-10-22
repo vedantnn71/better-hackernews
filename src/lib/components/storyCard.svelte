@@ -1,15 +1,14 @@
 <script lang="ts">
   import { toTitleCase, trimUrl } from "$lib/utils";
+  import { useQuery } from "@sveltestack/svelte-query";
+  import { getStory } from "$lib/api";
   import type { Story } from "$lib/types";
   import dayjs from "dayjs";
-    import { useQuery } from "@sveltestack/svelte-query";
-    import { getStory } from "$lib/api";
 
   export let index: number;
   export let id: number;
 
   let storyQuery = useQuery<Story>(["story", id], () => getStory(id));
-  let story = $storyQuery.data;
 </script>
 
 
