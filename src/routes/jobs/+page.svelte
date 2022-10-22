@@ -2,4 +2,4 @@
   import StoryPageLayout from "$lib/components/storyPageLayout.svelte";
 </script>
 
-<StoryPageLayout key="new" />
+<StoryPageLayout key="jobs" />
