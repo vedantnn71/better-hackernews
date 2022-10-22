@@ -2,6 +2,7 @@
   import Logo from "./logo.svelte";
   import MobileMenu from "./mobileMenu.svelte";
   import { isOpen, toggleTheme, theme } from "$lib/store";
+  import { fly } from "svelte/transition";
   import { links } from "$lib/constants";
   import { toTitleCase } from "$lib/utils";
   import { onDestroy } from "svelte";
@@ -17,6 +18,7 @@
 
 <div
   class="flex w-full items-center border-b border-gray-300 py-4 px-6 dark:border-gray-800 md:px-8"
+  transition:fly={{ x: 0, duration: 500 }}
 >
   <a href="/">
     <Logo />
