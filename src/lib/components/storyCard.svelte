@@ -39,8 +39,12 @@
     </div>
 
     <a href={`/story/${$storyQuery.data.id}`}>
-      <h1 class="text-md font-medium text-gray-800 dark:text-gray-200 md:text-lg">
-        {$storyQuery.data.title}
+      <h1 class="text-md break-all font-medium text-gray-800 dark:text-gray-200 md:text-lg">
+        {#if $storyQuery.data.title}
+          {toTitleCase($storyQuery.data.title)}
+        {:else}
+          {@html $storyQuery.data.text}
+        {/if}
 
         {#if $storyQuery.data.url}
           <span class="font-normal text-gray-600 dark:text-gray-400"
@@ -50,16 +54,22 @@
       </h1>
 
       <div class="mt-1 flex gap-2 text-xs text-gray-500 dark:text-gray-300 md:text-sm">
-        <p>{$storyQuery.data.score} Points</p>
-        <p>•</p>
+        {#if $storyQuery.data.score}
+          <p>{$storyQuery.data.score} Points</p>
+          <p>•</p>
+        {/if}
 
         <p>{toTitleCase(dayjs($storyQuery.data.time * 1000).fromNow(true))} Ago</p>
         <p class="hidden md:inline">•</p>
 
-        <p class="hidden md:inline">{$storyQuery.data.descendants} Comments</p>
+        <p class="hidden md:inline">{$storyQuery.data.descendants || 0} Comments</p>
         <p class="hidden md:inline">•</p>
 
         <p class="hidden md:inline">By {$storyQuery.data.by}</p>
+        {#if $storyQuery.data.parent}
+          <p class="hidden md:inline">•</p>
+          <a href="/story/{$storyQuery.data.parent}" class="hidden md:inline"> Reply to </a>
+        {/if}
       </div>
     </a>
   </a>
