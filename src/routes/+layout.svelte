@@ -1,6 +1,7 @@
 <script>
   import Nav from "$lib/components/nav.svelte";
   import Analytics from "$lib/components/analytics.svelte";
+  import ProductHunt from "$lib/components/productHunt.svelte";
   import { QueryClient, QueryClientProvider } from "@sveltestack/svelte-query";
   import { theme } from "$lib/store";
   import { onDestroy } from "svelte";
@@ -59,6 +60,7 @@
 <QueryClientProvider client={queryClient}>
   <div class="min-h-screen bg-gray-100 pb-2 dark:bg-gray-900">
     <Nav />
+    <ProductHunt />
     <slot />
   </div>
 </QueryClientProvider>
