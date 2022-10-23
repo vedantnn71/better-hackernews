@@ -1,5 +1,6 @@
 <script lang="ts">
   import Reply from "./reply.svelte";
+  import { showReplies } from "$lib/store";
   import type { Story } from "$lib/types";
   import dayjs from "dayjs";
 
@@ -7,11 +8,10 @@
   export let nextCommentId: number | undefined;
   export let prevCommentId: number | undefined;
 
-  let showReplies = false;
   let href = `https://news.ycombinator.com/item?id=${comment.id}`;
 
   function toggleReplies() {
-    showReplies = !showReplies;
+    $showReplies = !$showReplies;
   }
 </script>
 
@@ -71,7 +71,7 @@
         {#if comment.kids}
           <p class="hidden md:inline-block">•</p>
           <button class="mb-auto max-w-fit" on:click={toggleReplies}>
-            {showReplies ? "hide" : "show"}
+            {$showReplies ? "hide" : "show"}
             {comment.kids.length} replies
           </button>
         {/if}
@@ -89,7 +89,7 @@
     </div>
   </div>
 
-  {#if comment.kids && showReplies}
+  {#if comment.kids && $showReplies}
     <div class="ml-4 flex flex-col">
       {#each comment.kids as replyId}
         <Reply {replyId} />
