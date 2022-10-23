@@ -1,5 +1,6 @@
 <script lang="ts">
   import { toTitleCase, trimUrl } from "$lib/utils";
+  import Container from "./card/container.svelte";
   import { useQuery } from "@sveltestack/svelte-query";
   import { getStory } from "$lib/api";
   import type { Story } from "$lib/types";
@@ -12,12 +13,6 @@
 </script>
 
 {#if $storyQuery.isSuccess}
-  <a
-    href={$storyQuery.data.url}
-    rel="noopener noreferrer"
-    target="_blank"
-    class="flex items-start gap-4 rounded-2xl border border-gray-300 bg-gray-100 px-5 py-4 dark:border-gray-800 dark:bg-gray-900 md:mx-4"
-  >
     <div class="mt-px flex items-center gap-2 font-medium text-gray-800 dark:text-gray-300">
       <h3>
         {index + 1}
@@ -74,5 +69,5 @@
         {/if}
       </div>
     </a>
-  </a>
+  </Container>
 {/if}

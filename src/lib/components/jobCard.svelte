@@ -1,5 +1,6 @@
 <script lang="ts">
   import { toTitleCase, trimUrl } from "$lib/utils";
+  import Container from "./card/container.svelte";
   import { useQuery } from "@sveltestack/svelte-query";
   import { fly } from "svelte/transition";
   import { getStory } from "$lib/api";
@@ -13,13 +14,6 @@
 </script>
 
 {#if $jobsQuery.isSuccess}
-  <a
-    href={$jobsQuery.data.url}
-    rel="noopener noreferrer"
-    target="_blank"
-    class="flex items-start gap-4 rounded-2xl border border-gray-300 p-5 dark:border-gray-800"
-    transition:fly={{ x: 0, duration: 500, delay: index * 100 }}
-  >
     <div class="mt-px flex items-center gap-2 font-medium text-gray-800 dark:text-gray-300">
       <h3>
         {index + 1}
@@ -40,6 +34,8 @@
       </svg>
     </div>
 
+  <Container url={$jobsQuery.data.url}>
+    <Header {index} />
     <div>
       <h1 class="text-md font-medium text-gray-800 dark:text-gray-200 md:text-lg">
         {$jobsQuery.data.title}
@@ -61,5 +57,5 @@
         <p class="hidden md:inline">By {$jobsQuery.data.by}</p>
       </div>
     </div>
-  </a>
+  </Container>
 {/if}
