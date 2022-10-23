@@ -28,9 +28,8 @@
   }
 
   onMount(() => {
-    document.addEventListener("scroll", () => {
-      const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
-      if (scrollTop + clientHeight >= scrollHeight) {
+    window.addEventListener("scroll", () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
         $storiesQuery.fetchNextPage();
       }
     });
