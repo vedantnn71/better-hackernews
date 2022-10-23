@@ -5,3 +5,4 @@ export const NEW_STORIES_URL = `${BASE_API_URL}/newstories.json`;
 export const SHOW_STORIES_URL = `${BASE_API_URL}/showstories.json`;
 export const JOB_STORIES_URL = `${BASE_API_URL}/jobstories.json`;
 export const STORY_URL = `${BASE_API_URL}/item/`;
+export const USER_URL = `${BASE_API_URL}/user/`;
