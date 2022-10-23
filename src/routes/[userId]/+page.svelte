@@ -26,7 +26,7 @@
   <title>Hacker News − @{$userQuery.data?.id || "loading ..."}</title>
 </svelte:head>
 
-<div class="m-6 flex flex-col gap-4 text-gray-700 dark:text-gray-300 md:mx-8" transition:fade>
+<div class="m-6 md:mx-8" transition:fade>
   {#if $userQuery.isLoading}
     Loading...
   {/if}
@@ -58,7 +58,10 @@
         </h1>
       </div>
     {:else}
-      <div transition:fade={{ duration: 500 }}>
+      <div
+        class="flex flex-col gap-4 text-gray-700 dark:text-gray-300"
+        transition:fade={{ duration: 500 }}
+      >
         <h1 class="text-lg font-semibold text-gray-900 dark:text-gray-100 md:text-xl">
           @{$userQuery.data.id}
         </h1>
