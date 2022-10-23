@@ -3,6 +3,7 @@
   import Loading from "$lib/components/loading.svelte";
   import { getComments, getStory } from "$lib/api";
   import { useQuery } from "@sveltestack/svelte-query";
+  import { showReplies } from "$lib/store";
   import type { PageData } from "./$types";
   import dayjs from "dayjs";
   import type { Story } from "$lib/types";
@@ -13,6 +14,10 @@
 
   let storyQuery = useQuery<Story>("story", () => getStory(+data.id));
   let commentsQuery = useQuery<Story[]>("comments", () => getComments(+data.id));
+
+  function toggleReplies() {
+    $showReplies = !$showReplies;
+  }
 </script>
 
 <svelte:head>
@@ -58,6 +63,11 @@
             <span>•</span>
             <span>{$storyQuery.data.descendants}</span>
             <span>Comments</span>
+
+            <span>•</span>
+            <button on:click={toggleReplies}>
+              {$showReplies ? "Hide" : "Expand"} Replies
+            </button>
           {/if}
         </div>
       </div>
