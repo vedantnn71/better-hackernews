@@ -1,5 +1,6 @@
 <script lang="ts">
   import Container from "./card/container.svelte";
+  import Bullet from "./card/bullet.svelte";
   import Header from "./card/header.svelte";
   import Title from "./card/title.svelte";
   import Time from "./card/time.svelte";
@@ -29,15 +30,19 @@
           <p>{$storyQuery.data.score} Points</p>
         {/if}
 
-        <p>•</p>
+        <Bullet />
         <Time time={$storyQuery.data.time} />
-        <p class="hidden md:inline">• {$storyQuery.data.descendants || 0} Comments</p>
 
+        <Bullet hideOnMobile />
+        <p class="hidden md:inline">{$storyQuery.data.descendants || 0} Comments</p>
+
+        <Bullet hideOnMobile />
         <a href="/{$storyQuery.data.by}" class="hidden md:inline">
-          • By {$storyQuery.data.by}
+          By {$storyQuery.data.by}
         </a>
         {#if $storyQuery.data.parent}
-          <a href="/story/{$storyQuery.data.parent}" class="hidden md:inline">• Reply to </a>
+          <Bullet hideOnMobile />
+          <a href="/story/{$storyQuery.data.parent}" class="hidden md:inline">Reply to </a>
         {/if}
       </div>
     </a>

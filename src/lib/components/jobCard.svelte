@@ -1,5 +1,6 @@
 <script lang="ts">
   import Container from "./card/container.svelte";
+  import Bullet from "./card/bullet.svelte";
   import Header from "./card/header.svelte";
   import Title from "./card/title.svelte";
   import Time from "./card/time.svelte";
@@ -21,9 +22,12 @@
 
       <div class="mt-1 flex gap-2 text-xs text-gray-500 dark:text-gray-300 md:text-sm">
         <p>{$jobsQuery.data.score} Points</p>
-        <p>•</p>
+        <Bullet />
+
         <Time time={$jobsQuery.data.time} />
-        <p class="hidden md:inline">• By {$jobsQuery.data.by}</p>
+
+        <Bullet hideOnMobile />
+        <p class="hidden md:inline">By {$jobsQuery.data.by}</p>
       </div>
     </div>
   </Container>
