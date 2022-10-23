@@ -24,7 +24,7 @@
   );
 
   $: if ($storiesQuery.isSuccess) {
-    stories = [...stories, ...$storiesQuery.data.pages.flat()];
+    stories = [...$storiesQuery.data.pages.flat()];
   }
 
   onMount(() => {
