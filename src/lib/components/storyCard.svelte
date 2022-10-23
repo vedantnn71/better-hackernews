@@ -43,7 +43,7 @@
         {#if $storyQuery.data.title}
           {toTitleCase($storyQuery.data.title)}
         {:else}
-          {@html $storyQuery.data.text}
+          {@html $storyQuery.data.text || "[dead]"}
         {/if}
 
         {#if $storyQuery.data.url}
@@ -65,7 +65,9 @@
         <p class="hidden md:inline">{$storyQuery.data.descendants || 0} Comments</p>
         <p class="hidden md:inline">•</p>
 
-        <p class="hidden md:inline">By {$storyQuery.data.by}</p>
+        <a href="/{$storyQuery.data.by}" class="hidden md:inline">
+          By {$storyQuery.data.by}
+        </a>
         {#if $storyQuery.data.parent}
           <p class="hidden md:inline">•</p>
           <a href="/story/{$storyQuery.data.parent}" class="hidden md:inline"> Reply to </a>

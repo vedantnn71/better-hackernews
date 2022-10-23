@@ -46,7 +46,11 @@
       <div
         class="mt-1 mb-2 flex flex-col gap-2 text-xs text-gray-600 dark:text-gray-400 md:flex-row md:text-sm"
       >
-        <p>{comment.by} on {dayjs(comment.time * 1000).format("DD MMM YYYY")}</p>
+        <p>
+          <a href="/{comment.by}">{comment.by}</a> on {dayjs(comment.time * 1000).format(
+            "DD MMM YYYY"
+          )}
+        </p>
 
         {#if nextCommentId}
           <p class="hidden md:inline-block">•</p>
