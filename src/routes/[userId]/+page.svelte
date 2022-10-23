@@ -23,7 +23,14 @@
 </script>
 
 <svelte:head>
-  <title>Hacker News − @{$userQuery.data?.id || "loading ..."}</title>
+  {#if $userQuery.isSuccess}
+    <title>Hacker News − {userId}</title>
+    <meta property="og:title" content="Hacker News − {userId}" />
+    <meta property="og:image" content="/og/{userId}" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Hacker News − {userId}" />
+    <meta property="twitter:image" content="/og/{userId}" />
+  {/if}
 </svelte:head>
 
 <div class="m-6 md:mx-8" transition:fade>

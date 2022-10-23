@@ -19,6 +19,10 @@
   {#if $storyQuery.isSuccess}
     <title>Hacker News − {$storyQuery.data.title || data.id}</title>
     <meta property="og:title" content="Hacker News − {$storyQuery.data.title || data.id}" />
+    <meta property="og:image" content="/story/og/{data.id}" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Hacker News − {$storyQuery.data.title || data.id}" />
+    <meta property="twitter:image" content="/story/og/{data.id}" />
   {/if}
 </svelte:head>
 
