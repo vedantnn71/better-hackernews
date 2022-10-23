@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { toTitleCase, trimUrl } from "$lib/utils";
   import Container from "./card/container.svelte";
   import Header from "./card/header.svelte";
+  import Title from "./card/title.svelte";
   import Time from "./card/time.svelte";
   import { useQuery } from "@sveltestack/svelte-query";
   import { getStory } from "$lib/api";
@@ -18,19 +18,10 @@
     <Header {index} />
 
     <a href={`/story/${$storyQuery.data.id}`}>
-      <h1 class="text-md break-all font-medium text-gray-800 dark:text-gray-200 md:text-lg">
-        {#if $storyQuery.data.title}
-          {toTitleCase($storyQuery.data.title)}
-        {:else}
-          {@html $storyQuery.data.text || "[dead]"}
-        {/if}
-
-        {#if $storyQuery.data.url}
-          <span class="font-normal text-gray-600 dark:text-gray-400"
-            >{trimUrl($storyQuery.data.url)}</span
-          >
-        {/if}
-      </h1>
+      <Title
+        title={$storyQuery.data.title}
+        text={$storyQuery.data.text}
+        url={$storyQuery.data.url}
       />
 
       <div class="mt-1 flex gap-2 text-xs text-gray-500 dark:text-gray-300 md:text-sm">
