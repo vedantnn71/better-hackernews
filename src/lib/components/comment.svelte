@@ -74,7 +74,7 @@
       </div>
 
       <div
-        class="prose-pre:scrollbar prose prose-gray max-w-none gap-4 overflow-hidden text-base text-gray-700 prose-a:break-all prose-a:text-orange-600 prose-a:no-underline prose-code:overflow-x-scroll prose-code:whitespace-normal dark:text-gray-300"
+        class="prose-pre:scrollbar prose prose-gray max-w-none gap-4 overflow-hidden text-base text-sm text-gray-700 prose-a:break-all prose-a:text-orange-600 prose-a:no-underline prose-code:overflow-x-scroll prose-code:whitespace-normal dark:text-gray-300 sm:text-base"
       >
         {#if comment.text}
           {@html comment.text}
