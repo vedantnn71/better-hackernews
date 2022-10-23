@@ -2,11 +2,10 @@
   import { toTitleCase, trimUrl } from "$lib/utils";
   import Container from "./card/container.svelte";
   import Header from "./card/header.svelte";
+  import Time from "./card/time.svelte";
   import { useQuery } from "@sveltestack/svelte-query";
-  import { fly } from "svelte/transition";
   import { getStory } from "$lib/api";
   import type { Story } from "$lib/types";
-  import dayjs from "dayjs";
 
   export let index: number;
   export let id: number;
@@ -32,10 +31,8 @@
         <p>{$jobsQuery.data.score} Points</p>
         <p>•</p>
 
-        <p>{toTitleCase(dayjs($jobsQuery.data.time * 1000).fromNow(true))} Ago</p>
-        <p class="hidden md:inline">•</p>
-
-        <p class="hidden md:inline">By {$jobsQuery.data.by}</p>
+        <Time time={$jobsQuery.data.time} />
+        <p class="hidden md:inline">• By {$jobsQuery.data.by}</p>
       </div>
     </div>
   </Container>
