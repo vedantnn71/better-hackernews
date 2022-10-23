@@ -72,7 +72,7 @@ function getHtml(user: User | null) {
         @${id}
       </h1>
 
-      <div tw="flex text-3xl mt-4 font-normal text-gray-600">
+      <div tw="flex text-3xl mt-4 text-gray-600">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
