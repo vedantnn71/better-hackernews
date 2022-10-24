@@ -75,13 +75,6 @@ function removeNav() {
   nav && nav.remove();
 }
 
-function addTailwind() {
-  const head = document.querySelector("head");
-  const tailwindScript = document.createElement("script");
-  tailwindScript.src = "https://cdn.tailwindcss.com";
-  head.appendChild(tailwindScript);
-}
-
 function addCustomNav() {
   const nav = document.createElement("nav");
   nav.id = "nav";
@@ -152,7 +145,6 @@ function addCustomNav() {
   document.body.prepend(nav);
 }
 
-addTailwind();
 changeFavicon();
 changeBodyColors();
 addStylesheets();
