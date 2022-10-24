@@ -34,20 +34,20 @@ const addStylesheets = () => {
   head.appendChild(additionsStylesheet);
 };
 
-// Function to replace favicon (to reduce red dots)
-const changeFavicon = () => {
-  const currentFavicons = document.querySelectorAll('[rel="shortcut icon"]');
-  currentFavicons.forEach((item) => {
+// Function to replace favicons (to reduce red dots)
+const changeFavicons = () => {
+  const currentFaviconss = document.querySelectorAll('[rel="shortcut icons"]');
+  currentFaviconss.forEach((item) => {
     item && item.remove();
   });
 
   const head = document.querySelector("head");
-  const faviconLink = document.createElement("link");
-  faviconLink.id = "replacedFavicon";
-  faviconLink.rel = "shortcut icon";
-  faviconLink.href = chrome.runtime.getURL("content/hn.ico");
+  const faviconsLink = document.createElement("link");
+  faviconsLink.id = "replacedFavicons";
+  faviconsLink.rel = "shortcut icons";
+  faviconsLink.href = chrome.runtime.getURL("content/hn.ico");
 
-  head.appendChild(faviconLink);
+  head.appendChild(faviconsLink);
 };
 
 // remove the default hn navbar
@@ -56,77 +56,86 @@ function removeNav() {
   nav && nav.remove();
 }
 
+function setTheme(theme) {
+  const html = document.querySelector("html");
+  html.classList[0] = theme;
+}
+
+function getTheme() {
+  chrome.storage.sync.get(["theme"], (result) => {
+    setTheme(result.theme);
+  });
+}
+
+const elements = {
+  logo: logoElement(),
+  navLinks: navLinksElement(),
+  seperator: seperatorElement(),
+  toggleTheme: toggleThemeElement(),
+  moonIcon: moonIconElement(),
+  sunIcon: sunIconElement()
+};
+
 function addCustomNav() {
   const nav = document.createElement("nav");
-  nav.id = "nav";
-  nav.innerHTML = `
-<a href="/" class="logo">
-  <img
-    src="${chrome.runtime.getURL("content/hn.svg")}"
-    alt="Hacker News Logo"
-    class="logo-img"
-  />
-  <p class="logo-text">Hacker News</p>
-</a>
+  const rightContainer = document.createElement("div");
 
-<div class="links-container">
-    <a href="https://news.ycombinator.com/" class="link">
-      Top         
-    </a>
-    <a href="https://news.ycombinator.com/newest" class="link">
-      New
-    </a>
-    <a href="https://news.ycombinator.com/show" class="link">
-      Show
-    </a>
-    <a href="https://news.ycombinator.com/ask" class="link">
-      Ask
-    </a>
-    <a href="https://news.ycombinator.com/jobs" class="link">
-      Jobs
-    </a>
-    <a href="https://news.ycombinator.com/submit" class="link">
-      Submit
-    </a>
+  rightContainer.classList += "nav-right-container";
 
-  <div class="seperator"></div>
+  rightContainer.appendChild(elements.navLinks);
+  rightContainer.appendChild(elements.seperator);
+  rightContainer.appendChild(elements.toggleTheme);
 
-  <button class="toggle-theme">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="toggle-theme-icon"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-        />
-      </svg>
-      <span class="ml-2">Light</span>
-  </button>
-</div>
+  nav.prepend(elements.logo);
+  nav.appendChild(rightContainer);
 
-<button class="menu-btn">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke-width="1.5"
-    stroke="currentColor"
-    class="menu-icon"
-  >
-    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-  </svg>
-</button>
-`;
   document.body.prepend(nav);
 }
 
-changeFavicon();
+function logoElement() {
+  const logoContainer = document.createElement("a");
+  logoContainer.href = "/";
+  logoContainer.classList += "logo";
+
+  const logoImage = document.createElement("img");
+  logoImage.src = chrome.runtime.getURL("content/hn.svg");
+  logoImage.alt = "Hacker News";
+  logoImage.classList += "logo-img";
+
+  const logoText = document.createElement("p");
+  logoText.innerText = "Hacker News";
+  logoText.classList += "logo-text";
+
+  logoContainer.appendChild(logoImage);
+  logoContainer.appendChild(logoText);
+
+  return logoContainer;
+}
+
+function navLinksElement() {
+  const links = {
+    top: "https://news.ycombinator.com/",
+    new: "https://news.ycombinator.com/newest",
+    show: "https://news.ycombinator.com/show",
+    ask: "https://news.ycombinator.com/ask",
+    jobs: "https://news.ycombinator.com/jobs",
+    submit: "https://news.ycombinator.com/submit"
+  };
+
+  const linksContainer = document.createElement("div");
+  linksContainer.classList += "links-container";
+
+  Object.keys(links).forEach((key) => {
+    const link = document.createElement("a");
+    link.classList += "link";
+    link.href = links[key];
+    link.innerText = key.charAt(0).toUpperCase() + key.slice(1);
+    linksContainer.appendChild(link);
+  });
+
+  return linksContainer;
+}
+
 // create the svg element with base attributes
 function createSvg() {
   const svg = document.createElementNS(xmlns, "svg");
@@ -175,6 +184,43 @@ function sunIconElement() {
 
   return svg;
 }
+
+function seperatorElement() {
+  const seperator = document.createElement("div");
+  seperator.classList += "seperator";
+
+  return seperator;
+}
+
+function toggleThemeElement() {
+  const button = document.createElement("button");
+  const currentTheme = getTheme();
+
+  button.classList += "toggle-theme";
+
+  if (currentTheme === "dark") {
+    const icon = sunIconElement();
+    button.prepend(icon);
+  } else {
+    const icon = sunIconElement();
+
+    button.prepend(icon);
+  }
+
+  button.addEventListener("click", () => {
+    chrome.storage.sync.get(["theme"], (result) => {
+      const theme = result.theme === "dark" ? "light" : "dark";
+
+      chrome.storage.sync.set({ theme }, () => {
+        setTheme(theme);
+      });
+    });
+  });
+
+  return button;
+}
+
+changeFavicons();
 addStylesheets();
 removeNav();
 addCustomNav();
