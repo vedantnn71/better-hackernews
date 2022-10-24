@@ -28,8 +28,7 @@
         "content/inter/regular.ttf",
         "content/inter/medium.ttf",
         "content/inter/semibold.ttf",
-        "content/inter/bold.ttf",
-        "https://cdn.tailwindcss.com"
+        "content/inter/bold.ttf"
       ],
       "matches": ["https://news.ycombinator.com/*"]
     }
