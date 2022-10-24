@@ -62,13 +62,6 @@ const changeFavicon = () => {
   head.appendChild(faviconLink);
 };
 
-// select body element and change its background color
-function changeBodyColors() {
-  const body = document.querySelector("table[bgcolor='#f6f6ef']");
-  body.style.backgroundColor = colors.gray50;
-  body.style.color = colors.gray900;
-}
-
 // remove the default hn navbar
 function removeNav() {
   const nav = document.querySelector("td[bgcolor='#ff6600']");
@@ -146,7 +139,6 @@ function addCustomNav() {
 }
 
 changeFavicon();
-changeBodyColors();
 addStylesheets();
 removeNav();
 addCustomNav();
