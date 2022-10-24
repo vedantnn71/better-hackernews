@@ -1,0 +1,40 @@
+{
+  "name": "Better Experience for Hacker News",
+  "short_name": "Better Hacker News",
+  "description": "A better experience for Hacker News",
+  "version": "0.0.0",
+  "manifest_version": 2,
+  "icons": {
+    "16": "images/16.png",
+    "32": "images/32.png",
+    "48": "images/48.png",
+    "128": "images/128.png"
+  },
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "run_at": "document_idle",
+      "matches": ["https://news.ycombinator.com/*"],
+      "js": ["content/main.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    "content/main.css",
+    "content/additions.css",
+    "content/twitter.ico",
+    "content/twitter-mt.ico"
+  ],
+  "options_ui": {
+    "page": "customize.html",
+    "open_in_tab": true
+  },
+  "browser_action": {
+    "default_icon": {
+      "16": "images/16.png",
+      "32": "images/32.png",
+      "48": "images/48.png"
+    },
+    "default_title": "Customize",
+    "default_popup": "customize.html"
+  }
+}

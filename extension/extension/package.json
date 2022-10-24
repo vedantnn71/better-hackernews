@@ -1,0 +1,16 @@
+{
+  "name": "extension",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tailwindcss -i ./content/main.css -o ./content/dist/main.css -w"
+  },
+  "keywords": [],
+  "author": "Vedant Nandwana",
+  "license": "GNU",
+  "devDependencies": {
+    "tailwindcss": "^3.2.1"
+  }
+}

@@ -3,7 +3,45 @@ node_modules
 /build
 /.svelte-kit
 /package
+extension/**/static
 .env
 .env.*
 !.env.example
 /static/\~partytown
+
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.log
+*.orig
+*.rej
+*.swo
+*.swp
+*.vi
+*.zip
+*~
+*.sass-cache
+*.ruby-version
+*.rbenv-version
+
+# OS or Editor folders
+._*
+.cache
+.idea
+.project
+.settings
+.tmproj
+*.esproj
+*.sublime-project
+*.sublime-workspace
+nbproject
+Thumbs.db
+.fseventsd
+.DocumentRevisions*
+.TemporaryItems
+.Trashes
+
+# Other paths to ignore
+.awcache
+bower_components
+dist
