@@ -42,7 +42,7 @@ body {
   font-family: "Inter", sans-serif !important;
 
   @apply selection:bg-orange-200 dark:selection:bg-orange-900;
-  @apply bg-gray-50 dark:bg-gray-900;
+  @apply bg-gray-50 !text-base dark:bg-gray-900;
 }
 
 body::-webkit-scrollbar {
@@ -101,6 +101,26 @@ nav {
   @apply flex w-full items-center justify-between border-b border-gray-300 py-4 px-6 dark:border-gray-800 md:px-8;
 }
 
+.icon {
+  @apply h-6 w-6 fill-gray-200 hover:fill-gray-300 dark:fill-gray-800 dark:hover:fill-gray-700;
+}
+
+.icon-sm {
+  @apply h-4 w-4;
+}
+
+.icon-md {
+  @apply h-6 w-6;
+}
+
+.icon-lg {
+  @apply h-8 w-8;
+}
+
+.nav-right-container {
+  @apply flex items-center justify-center gap-4;
+}
+
 .logo-img {
   @apply h-8 w-auto;
 }
@@ -126,7 +146,7 @@ nav {
 }
 
 .toggle-theme {
-  @apply btn btn-dark py-3 px-5;
+  @apply grid place-items-center fill-gray-100 hover:fill-gray-600 dark:fill-gray-100 dark:hover:fill-gray-300;
 }
 
 .toggle-theme-icon {
