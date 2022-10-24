@@ -1,5 +1,7 @@
 ![github](https://user-images.githubusercontent.com/70624701/197326161-26b1791f-b6dc-4788-b14b-0f40c3084470.svg)
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvedantnn71%2Fbetter-hackernews%2F)
+
 Better hacker news is a try to improve experience of using hacker news. It uses the official [hacker news api](//github.com/HackerNews/API) to pull up the data.
 
 ### Pros
