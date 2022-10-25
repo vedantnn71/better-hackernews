@@ -104,7 +104,7 @@ a:link {
 }
 
 .icon {
-  @apply h-6 w-6 fill-gray-800 hover:fill-gray-700 dark:fill-gray-200 dark:hover:fill-gray-300;
+  @apply h-6 w-6 fill-gray-300 stroke-gray-700 dark:fill-gray-800 dark:stroke-gray-200;
 }
 
 .icon-sm {
@@ -119,8 +119,8 @@ a:link {
   @apply h-8 w-8;
 }
 
-.stroke-current {
-  @apply stroke-gray-800 dark:stroke-gray-200;
+.fill-current {
+  @apply fill-gray-800 dark:fill-gray-200;
 }
 
 .nav-right-container {
@@ -168,7 +168,7 @@ a:link {
 }
 
 .mobile-menu {
-  @apply flex h-fit w-full flex-col gap-4 bg-gray-100 pb-4 dark:bg-gray-900;
+  @apply flex h-fit w-full flex-col gap-4 bg-gray-50 pb-4 dark:bg-gray-900 md:hidden;
 }
 
 .mobile-menu-links {
@@ -180,7 +180,7 @@ a:link {
 }
 
 .items-container {
-  @apply my-2 flex flex-col gap-4;
+  @apply my-6 flex flex-col gap-4;
 }
 
 .item-container {
@@ -200,11 +200,12 @@ a:link {
 }
 
 .upvote-icon {
-  @apply h-5 w-5 cursor-pointer fill-gray-800 hover:fill-gray-700 dark:fill-gray-200 dark:hover:fill-gray-300;
+  @apply h-5 w-5 cursor-pointer stroke-gray-800 hover:stroke-gray-700 dark:stroke-gray-200 dark:hover:stroke-gray-300;
 }
 
-.upvote-icon:visited {
-  @apply fill-gray-600 dark:fill-gray-400;
+.upvote-icon:visited,
+.upvoted {
+  @apply fill-gray-800 dark:fill-gray-200;
 }
 
 .metadata {
