@@ -193,7 +193,7 @@ function getItems() {
 function getItem(id) {
   const item = document.getElementById(id);
   const title = item.querySelector("td.title span.titleline a");
-  const url = title.href;
+  const url = title ? title.href : "#";
   const titleText = title.innerText;
 
   const metadataContainer = item.nextSibling;
@@ -209,10 +209,10 @@ function getItem(id) {
     isUpvoted = upvoteLinkElement.classList.contains("nosee");
 
     if (isUpvoted) {
-      upvoteLink = upvoteLinkElement.href;
+      upvoteLink = upvoteLinkElement.href.replace("how=up", "how=un");
     }
 
-    upvoteLink = upvoteLinkElement.href.replace("how=up", "how=un");
+    upvoteLink = upvoteLinkElement.href;
 
     // remove &goto=* from the href
     //upvoteLink = upvoteLinkElement.href.replace(/goto=.*/, "");
