@@ -102,7 +102,7 @@ nav {
 }
 
 .icon {
-  @apply h-6 w-6 fill-gray-200 hover:fill-gray-300 dark:fill-gray-800 dark:hover:fill-gray-700;
+  @apply h-6 w-6 fill-gray-800 hover:fill-gray-700 dark:fill-gray-200 dark:hover:fill-gray-300;
 }
 
 .icon-sm {
@@ -115,6 +115,10 @@ nav {
 
 .icon-lg {
   @apply h-8 w-8;
+}
+
+.stroke-current {
+  @apply stroke-gray-800 dark:stroke-gray-200;
 }
 
 .nav-right-container {
@@ -154,9 +158,22 @@ nav {
 }
 
 .menu-icon {
-  @apply h-6 w-6 md:hidden;
+  @apply h-6 w-6 inline-block md:hidden md:px-8 cursor-pointer;
 }
 
-.menu-btn {
-  @apply ml-auto h-8 outline-none dark:text-gray-200 md:hidden;
+.hide {
+  @apply !hidden;
 }
+
+.mobile-menu {
+  @apply flex flex-col gap-4 w-full h-fit bg-gray-100 dark:bg-gray-900 pb-4;
+}
+
+.mobile-menu-links {
+  @apply flex flex-col w-full gap-2 mt-2 mx-2;
+}
+  
+.mobile-menu-links a {
+  @apply w-full text-left py-2 px-4 hover:bg-gray-200 hover:dark:bg-gray-800 rounded-xl text-gray-900 dark:text-gray-100;
+}
+

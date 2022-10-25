@@ -1,5 +1,16 @@
 const xmlns = "http://www.w3.org/2000/svg";
 
+function setTheme(theme) {
+  const html = document.querySelector("html");
+  html.classList = theme;
+}
+
+function getTheme() {
+  chrome.storage.sync.get(["theme"], (result) => {
+    setTheme(result.theme);
+  });
+}
+
 // Utility function to remove DOM element
 const removeElement = (id) => {
   const element = document.getElementById(id);
@@ -56,33 +67,30 @@ function removeNav() {
   nav && nav.remove();
 }
 
-function setTheme(theme) {
-  const html = document.querySelector("html");
-  html.classList[0] = theme;
-}
-
-function getTheme() {
-  chrome.storage.sync.get(["theme"], (result) => {
-    setTheme(result.theme);
-  });
-}
-
 const elements = {
   logo: logoElement(),
   navLinks: navLinksElement(),
   seperator: seperatorElement(),
   toggleTheme: toggleThemeElement(),
   moonIcon: moonIconElement(),
-  sunIcon: sunIconElement()
+  sunIcon: sunIconElement(),
+  menuIcon: menuIconElement(),
 };
 
 function addCustomNav() {
   const nav = document.createElement("nav");
   const rightContainer = document.createElement("div");
+  const menuIcon = elements.menuIcon;
+
+  menuIcon.addEventListener("click", () => {
+    const linksContainer = document.querySelector(".mobile-menu");
+    linksContainer.classList.toggle("hide");
+  });
 
   rightContainer.classList += "nav-right-container";
 
   rightContainer.appendChild(elements.navLinks);
+  rightContainer.appendChild(menuIcon);
   rightContainer.appendChild(elements.seperator);
   rightContainer.appendChild(elements.toggleTheme);
 
@@ -90,6 +98,20 @@ function addCustomNav() {
   nav.appendChild(rightContainer);
 
   document.body.prepend(nav);
+}
+
+function addMobileMenu() {
+  const mobileMenu = document.createElement("div");
+  mobileMenu.classList += "mobile-menu";
+
+  const navLinks = elements
+    .navLinks
+    .cloneNode(true);
+
+  navLinks.classList += " mobile-menu-links";
+  mobileMenu.appendChild(navLinks);
+
+  document.body.prepend(mobileMenu);
 }
 
 function logoElement() {
@@ -185,6 +207,17 @@ function sunIconElement() {
   return svg;
 }
 
+function menuIconElement() {
+  const svg = createSvg();
+  const path = createPath();
+
+  path.setAttributeNS(null, "d", "M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5");
+  svg.classList += " menu-icon stroke-current";
+  svg.appendChild(path);
+
+  return svg;
+}
+
 function seperatorElement() {
   const seperator = document.createElement("div");
   seperator.classList += "seperator";
@@ -223,4 +256,5 @@ function toggleThemeElement() {
 changeFavicons();
 addStylesheets();
 removeNav();
+addMobileMenu();
 addCustomNav();
