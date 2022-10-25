@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tailwindcss -i ./content/main.css -o ./content/dist/main.css -w -m -c ./tailwind.config.cjs"
+    "dev": "tailwindcss -i ./content/main.css -o ./content/dist/main.css -w -m -c ./tailwind.config.cjs",
+    "build": "tailwindcss -i ./content/main.css -o ./content/dist/main.css -c ./tailwind.config.cjs -m"
   },
   "keywords": [],
   "author": "Vedant Nandwana",
