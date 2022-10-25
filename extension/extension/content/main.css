@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
+@layer utilities {
   .btn-dark {
     @apply bg-gray-800 text-gray-100 dark:bg-gray-100 dark:text-gray-800;
   }
@@ -16,11 +16,9 @@
   }
 
   .btn-secondary {
-    @apply bg-gray-500 text-white dark:bg-gray-500 dark:text-white;
+    @apply bg-gray-600 text-white dark:bg-gray-700 dark:text-white;
   }
-}
 
-@layer utilities {
   .btn {
     @apply flex items-center gap-2 rounded-xl py-2 px-4 font-medium;
   }
@@ -101,6 +99,10 @@ nav {
   @apply flex w-full items-center justify-between border-b border-gray-300 py-4 px-6 dark:border-gray-800 md:px-8;
 }
 
+a:link {
+  @apply text-gray-800 hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-100;
+}
+
 .icon {
   @apply h-6 w-6 fill-gray-800 hover:fill-gray-700 dark:fill-gray-200 dark:hover:fill-gray-300;
 }
@@ -158,7 +160,7 @@ nav {
 }
 
 .menu-icon {
-  @apply h-6 w-6 inline-block md:hidden md:px-8 cursor-pointer;
+  @apply inline-block h-6 w-6 cursor-pointer md:hidden md:px-8;
 }
 
 .hide {
@@ -166,14 +168,62 @@ nav {
 }
 
 .mobile-menu {
-  @apply flex flex-col gap-4 w-full h-fit bg-gray-100 dark:bg-gray-900 pb-4;
+  @apply flex h-fit w-full flex-col gap-4 bg-gray-100 pb-4 dark:bg-gray-900;
 }
 
 .mobile-menu-links {
-  @apply flex flex-col w-full gap-2 mt-2 mx-2;
-}
-  
-.mobile-menu-links a {
-  @apply w-full text-left py-2 px-4 hover:bg-gray-200 hover:dark:bg-gray-800 rounded-xl text-gray-900 dark:text-gray-100;
+  @apply mx-2 mt-2 flex w-full flex-col gap-2;
 }
 
+.mobile-menu-links a {
+  @apply w-full rounded-xl py-2 px-4 text-left text-gray-900 hover:bg-gray-200 dark:text-gray-100 hover:dark:bg-gray-800;
+}
+
+.items-container {
+  @apply my-2 flex flex-col gap-4;
+}
+
+.item-container {
+  @apply mx-4 flex flex-col items-start gap-1 rounded-2xl border border-gray-300 bg-gray-100 px-5 py-4 dark:border-gray-800 dark:bg-gray-900;
+}
+
+.item-title {
+  @apply break-all text-base font-medium text-gray-800 dark:text-gray-200 md:text-lg;
+}
+
+.item-metadata {
+  @apply flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400;
+}
+
+.item-header {
+  @apply flex items-center justify-between gap-2;
+}
+
+.upvote-icon {
+  @apply h-5 w-5 cursor-pointer fill-gray-800 hover:fill-gray-700 dark:fill-gray-200 dark:hover:fill-gray-300;
+}
+
+.upvote-icon:visited {
+  @apply fill-gray-600 dark:fill-gray-400;
+}
+
+.metadata {
+  @apply flex gap-2;
+}
+
+.item-metadata a {
+  @apply text-gray-600 dark:text-gray-400;
+}
+
+.time-container,
+.time-bullet {
+  @apply hidden md:flex;
+}
+
+.bullet {
+  @apply my-auto text-[10px] text-gray-500 dark:text-gray-700;
+}
+
+.more-button {
+  @apply btn btn-secondary mx-auto my-4 max-w-max !px-6;
+}

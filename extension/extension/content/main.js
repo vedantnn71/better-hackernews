@@ -11,6 +11,10 @@ function getTheme() {
   });
 }
 
+function toTitleCase(str) {
+  return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+}
+
 // Utility function to remove DOM element
 const removeElement = (id) => {
   const element = document.getElementById(id);
@@ -74,7 +78,7 @@ const elements = {
   toggleTheme: toggleThemeElement(),
   moonIcon: moonIconElement(),
   sunIcon: sunIconElement(),
-  menuIcon: menuIconElement(),
+  menuIcon: menuIconElement()
 };
 
 function addCustomNav() {
@@ -104,11 +108,9 @@ function addMobileMenu() {
   const mobileMenu = document.createElement("div");
   mobileMenu.classList += "mobile-menu";
 
-  const navLinks = elements
-    .navLinks
-    .cloneNode(true);
+  const navLinks = elements.navLinks.cloneNode(true);
 
-  navLinks.classList += " mobile-menu-links";
+  navLinks.classList += " hide mobile-menu-links";
   mobileMenu.appendChild(navLinks);
 
   document.body.prepend(mobileMenu);
@@ -132,6 +134,17 @@ function logoElement() {
   logoContainer.appendChild(logoText);
 
   return logoContainer;
+}
+
+function moreItemsButtonElement() {
+  const link = document.querySelector("a.morelink").href;
+
+  const button = document.createElement("a");
+  button.classList += "more-button";
+  button.innerText = "More";
+  button.href = link;
+
+  return button;
 }
 
 function navLinksElement() {
@@ -158,6 +171,184 @@ function navLinksElement() {
   return linksContainer;
 }
 
+function hideHNItems() {
+  const container = document.querySelector("center");
+  container.classList += "hide";
+}
+
+// scrap hn items from the page
+function getItems() {
+  const items = document.querySelectorAll("tr.athing");
+  const ids = [];
+
+  items.forEach((item) => {
+    const id = item.id;
+    ids.push(id);
+  });
+
+  return ids;
+}
+
+// scrap data for each item from the page
+function getItem(id) {
+  const item = document.getElementById(id);
+  const title = item.querySelector("td.title span.titleline a");
+  const url = title.href;
+  const titleText = title.innerText;
+
+  const metadataContainer = item.nextSibling;
+  const points = metadataContainer.querySelector(`#score_${id}`);
+  const user = metadataContainer.querySelector("td.subtext a.hnuser");
+  const time = metadataContainer.querySelector("td.subtext a:last-child");
+  const comments = metadataContainer.querySelectorAll(`a[href*="item?id=${id}"]`)[1]; // a bit hacky but works
+  const upvoteLinkElement = document.querySelector(`#up_${id}`);
+  let isUpvoted = false;
+  let upvoteLink = "";
+
+  if (upvoteLinkElement !== null) {
+    isUpvoted = upvoteLinkElement.classList.contains("nosee");
+
+    if (isUpvoted) {
+      upvoteLink = upvoteLinkElement.href;
+    }
+
+    upvoteLink = upvoteLinkElement.href.replace("how=up", "how=un");
+
+    // remove &goto=* from the href
+    //upvoteLink = upvoteLinkElement.href.replace(/goto=.*/, "");
+  }
+
+  return {
+    id,
+    url,
+    title: titleText,
+    points: points !== null ? points.innerText : 0,
+    user: user !== null ? user.innerText : null,
+    time: time !== null ? time.innerText : null,
+    comments: comments ? comments.innerText : null,
+    upvoteLink,
+    isUpvoted
+  };
+}
+
+function bulletElement() {
+  const bullet = document.createElement("span");
+  bullet.classList += "bullet";
+  bullet.innerText = "•";
+
+  return bullet;
+}
+
+function pointsElement(points) {
+  const pointsContainer = document.createElement("div");
+  pointsContainer.classList += "metadata points-container";
+
+  const pointsElem = document.createElement("p");
+  pointsElem.classList += "points";
+  pointsElem.innerText = points;
+
+  pointsContainer.appendChild(pointsElem);
+
+  return pointsContainer;
+}
+
+function userElement(id) {
+  const userContainer = document.createElement("a");
+  userContainer.classList += "metadata user-container";
+  userContainer.href = `https://news.ycombinator.com/user?id=${id}`;
+
+  const user = document.createElement("p");
+  user.classList += "user";
+  user.innerText = id;
+
+  userContainer.appendChild(user);
+
+  return userContainer;
+}
+
+function timeElement(time) {
+  const timeContainer = document.createElement("div");
+  timeContainer.classList += "metadata time-container";
+
+  const timeElem = document.createElement("p");
+  timeElem.classList += "time";
+  timeElem.innerText = toTitleCase(time);
+
+  timeContainer.appendChild(timeElem);
+
+  return timeContainer;
+}
+
+function itemCommentsElement(comments) {
+  const commentsContainer = document.createElement("div");
+  commentsContainer.classList += "metadata comments-container";
+
+  const commentsElem = document.createElement("p");
+  commentsElem.classList += "comments";
+  commentsElem.innerText = toTitleCase(comments);
+
+  commentsContainer.appendChild(commentsElem);
+
+  return commentsContainer;
+}
+
+function itemElement(item) {
+  const itemContainer = document.createElement("div");
+  itemContainer.classList += "metadata item-container";
+
+  const itemHeader = document.createElement("div");
+  itemHeader.classList += "item-header";
+
+  const upvoteLink = document.createElement("a");
+  upvoteLink.classList += "upvote-link";
+  upvoteLink.href = item.upvoteLink;
+
+  let upvoteIcon = upvoteIconElement();
+
+  if (item.isUpvoted) {
+    upvoteIcon = upvotedIconElement();
+  }
+
+  upvoteIcon.classList += " upvote-icon";
+  upvoteLink.appendChild(upvoteIcon);
+
+  const itemTitle = document.createElement("a");
+  itemTitle.classList += "item-title";
+  itemTitle.href = item.url;
+  itemTitle.innerText = item.title;
+
+  itemHeader.appendChild(upvoteLink);
+  itemHeader.appendChild(itemTitle);
+
+  const itemMetadata = document.createElement("div");
+  itemMetadata.classList += "item-metadata";
+
+  if (item.points) {
+    itemMetadata.appendChild(pointsElement(item.points));
+    itemMetadata.appendChild(bulletElement());
+  }
+
+  if (item.user) {
+    itemMetadata.appendChild(userElement(item.user));
+    itemMetadata.appendChild(bulletElement());
+  }
+
+  if (item.comments) {
+    const bullet = bulletElement();
+    bullet.classList += " time-bullet";
+
+    itemMetadata.appendChild(itemCommentsElement(item.comments));
+    itemMetadata.appendChild(bullet);
+  }
+
+  itemMetadata.appendChild(timeElement(item.time));
+
+  itemContainer.appendChild(itemHeader);
+  itemContainer.appendChild(itemMetadata);
+
+  return itemContainer;
+}
+
 // create the svg element with base attributes
 function createSvg() {
   const svg = document.createElementNS(xmlns, "svg");
@@ -177,6 +368,32 @@ function createPath() {
   path.setAttributeNS(null, "stroke-linejoin", "round");
 
   return path;
+}
+
+function upvoteIconElement() {
+  const svg = createSvg();
+  const path = createPath();
+  path.setAttributeNS(
+    null,
+    "d",
+    "M12.781 2.375c-.381-.475-1.181-.475-1.562 0l-8 10A1.001 1.001 0 0 0 4 14h4v7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7h4a1.001 1.001 0 0 0 .781-1.625l-8-10zM15 12h-1v8h-4v-8H6.081L12 4.601 17.919 12H15z"
+  );
+  svg.appendChild(path);
+
+  return svg;
+}
+
+function upvotedIconElement() {
+  const svg = createSvg();
+  const path = createPath();
+  path.setAttributeNS(
+    null,
+    "d",
+    "M4 14h4v7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7h4a1.001 1.001 0 0 0 .781-1.625l-8-10c-.381-.475-1.181-.475-1.562 0l-8 10A1.001 1.001 0 0 0 4 14z"
+  );
+  svg.appendChild(path);
+
+  return svg;
 }
 
 function moonIconElement() {
@@ -256,5 +473,23 @@ function toggleThemeElement() {
 changeFavicons();
 addStylesheets();
 removeNav();
+hideHNItems();
 addMobileMenu();
 addCustomNav();
+
+const page = document.querySelector("html").getAttribute("op");
+
+if (page === "news" || page === "newest" || page === "jobs" || page === "show" || page === "ask") {
+  const itemsContainer = document.createElement("div");
+  itemsContainer.classList += "items-container";
+
+  getItems().forEach((id) => {
+    const item = getItem(id);
+    const itemElem = itemElement(item);
+
+    itemsContainer.appendChild(itemElem);
+  });
+
+  document.body.appendChild(itemsContainer);
+  document.body.appendChild(moreItemsButtonElement());
+}
