@@ -500,10 +500,13 @@ function customizePage() {
   }
 }
 
-changeFavicons();
+function resetPage() {
+  changeFavicons();
+  removeNav();
+  hideHNItems();
+}
+resetPage();
 addStylesheets();
-removeNav();
-hideHNItems();
 addMobileMenu();
 addCustomNav();
 customizeItemsPage();
