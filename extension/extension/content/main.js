@@ -293,7 +293,8 @@ function itemCommentsElement(comments) {
 }
 
 function itemElement(item) {
-  const itemContainer = document.createElement("div");
+  const itemContainer = document.createElement("a");
+  itemContainer.href = `/item?id=${item.id}`;
   itemContainer.classList += "metadata item-container";
 
   const itemHeader = document.createElement("div");
