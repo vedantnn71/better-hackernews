@@ -471,16 +471,7 @@ function toggleThemeElement() {
   return button;
 }
 
-changeFavicons();
-addStylesheets();
-removeNav();
-hideHNItems();
-addMobileMenu();
-addCustomNav();
-
-const page = document.querySelector("html").getAttribute("op");
-
-if (page === "news" || page === "newest" || page === "jobs" || page === "show" || page === "ask") {
+function customizeItemsPage() {
   const itemsContainer = document.createElement("div");
   itemsContainer.classList += "items-container";
 
@@ -494,3 +485,25 @@ if (page === "news" || page === "newest" || page === "jobs" || page === "show" |
   document.body.appendChild(itemsContainer);
   document.body.appendChild(moreItemsButtonElement());
 }
+
+function customizePage() {
+  const page = document.querySelector("html").getAttribute("op");
+
+  if (
+    page === "news" ||
+    page === "newest" ||
+    page === "jobs" ||
+    page === "show" ||
+    page === "ask"
+  ) {
+    customizeItemsPage();
+  }
+}
+
+changeFavicons();
+addStylesheets();
+removeNav();
+hideHNItems();
+addMobileMenu();
+addCustomNav();
+customizeItemsPage();
