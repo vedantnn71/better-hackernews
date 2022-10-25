@@ -505,8 +505,13 @@ function resetPage() {
   removeNav();
   hideHNItems();
 }
+
+function addCustomElements() {
+  addMobileMenu();
+  addCustomNav();
+}
+
 resetPage();
 addStylesheets();
-addMobileMenu();
-addCustomNav();
-customizeItemsPage();
+addCustomElements();
+customizePage();
