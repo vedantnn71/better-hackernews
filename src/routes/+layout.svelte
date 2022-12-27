@@ -1,6 +1,5 @@
 <script>
   import Nav from "$lib/components/nav.svelte";
-  import Analytics from "$lib/components/analytics.svelte";
   import ProductHunt from "$lib/components/productHunt.svelte";
   import { QueryClient, QueryClientProvider } from "@sveltestack/svelte-query";
   import { theme } from "$lib/store";
@@ -55,6 +54,8 @@
   <meta property="twitter:title" content={title} />
   <meta property="twitter:description" content={description} />
   <meta property="twitter:image" content="/social.png" />
+
+  <script defer src="https://usebud.vercel.app/track.js"></script>
 </svelte:head>
 
 <QueryClientProvider client={queryClient}>
@@ -65,4 +66,3 @@
   </div>
 </QueryClientProvider>
 
-<Analytics />
