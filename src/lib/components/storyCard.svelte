@@ -37,7 +37,7 @@
         <p class="hidden md:inline">{$storyQuery.data.descendants || 0} Comments</p>
 
         <Bullet hideOnMobile />
-        <a href="/{$storyQuery.data.by}" class="hidden md:inline">
+        <a href="/user?id={$storyQuery.data.by}" class="hidden md:inline">
           By {$storyQuery.data.by}
         </a>
         {#if $storyQuery.data.parent}
