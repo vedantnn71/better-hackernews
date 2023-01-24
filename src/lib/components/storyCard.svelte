@@ -18,7 +18,7 @@
   <Container url={$storyQuery.data.url}>
     <Header {index} />
 
-    <a href={`/item?id=${$storyQuery.data.id}`}>
+    <a href={`/story/${$storyQuery.data.id}`}>
       <Title
         title={$storyQuery.data.title}
         text={$storyQuery.data.text}
@@ -37,12 +37,12 @@
         <p class="hidden md:inline">{$storyQuery.data.descendants || 0} Comments</p>
 
         <Bullet hideOnMobile />
-        <a href="/user?id={$storyQuery.data.by}" class="hidden md:inline">
+        <a href="/{$storyQuery.data.by}" class="hidden md:inline">
           By {$storyQuery.data.by}
         </a>
         {#if $storyQuery.data.parent}
           <Bullet hideOnMobile />
-          <a href="/item?id={$storyQuery.data.parent}" class="hidden md:inline">Reply to </a>
+          <a href="/story/{$storyQuery.data.parent}" class="hidden md:inline">Reply to </a>
         {/if}
       </div>
     </a>
