@@ -1,36 +1,28 @@
 <script lang="ts">
+  import type { Story, StoryKey } from "$lib/types";
   import StoryCard from "$lib/components/storyCard.svelte";
   import JobCard from "$lib/components/jobCard.svelte";
   import Loading from "$lib/components/loading.svelte";
   import { onMount } from "svelte";
   import { getStories } from "$lib/api";
   import { toTitleCase } from "$lib/utils";
-  import { useInfiniteQuery } from "@sveltestack/svelte-query";
-  import type { StoryKey } from "$lib/types";
+  import { useQuery } from "@sveltestack/svelte-query";
 
   export let key: StoryKey;
 
-  let prevId = 0;
-  let stories: number[] = [];
+  let lastStory: number = 0;
 
-  const storiesQuery = useInfiniteQuery(
-    `stories/${key}`,
-    ({ pageParam = 10 }) => getStories(key, pageParam),
-    {
-      getNextPageParam: (lastPage) => {
-        return lastPage.length + 10;
-      }
-    }
+  const storiesQuery = useQuery<Story[]>(
+    ["stories", key],
+    () => getStories(key),
   );
-
-  $: if ($storiesQuery.isSuccess) {
-    stories = [...$storiesQuery.data.pages.flat()];
-  }
+  
+  let stories: Story[] = ($storiesQuery.data ?? []).slice(0, 10);
 
   onMount(() => {
     window.addEventListener("scroll", () => {
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
-        $storiesQuery.fetchNextPage();
+        stories = $storiesQuery.data.slice(0, lastStory += 10);
       }
     });
   });
@@ -57,14 +49,14 @@
   {#if $storiesQuery.isSuccess}
     {#each stories as story, index}
       {#if key === "jobs"}
-        <JobCard index={prevId + index} id={story} />
+        <JobCard index={index} id={story} />
       {:else}
-        <StoryCard index={prevId + index} id={story} />
+        <StoryCard index={index} id={story} />
       {/if}
     {/each}
   {/if}
 
-  {#if $storiesQuery.isFetchingNextPage}
+  {#if $storiesQuery.isLoading}
     <div class="mt-2 flex justify-center">
       <svg
         class="-ml-1 mr-3 h-5 w-5 animate-spin text-gray-800 dark:text-gray-200"
