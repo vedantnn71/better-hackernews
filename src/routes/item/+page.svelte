@@ -55,7 +55,7 @@
           {/if}
 
           <span>By</span>
-          <a href="/{$storyQuery.data.by}">{$storyQuery.data.by}</a>
+          <a href="/user?id={$storyQuery.data.by}">{$storyQuery.data.by}</a>
           <span>•</span>
 
           <span>{dayjs($storyQuery.data.time * 1000).format("DD MMM YYYY")}</span>
