@@ -55,7 +55,7 @@
   <meta property="twitter:description" content={description} />
   <meta property="twitter:image" content="/social.png" />
 
-  <script defer src="https://usebud.vercel.app/track.js"></script>
+  <script defer src="https://withbeacon.vercel.app/track.js"></script>
 </svelte:head>
 
 <QueryClientProvider client={queryClient}>
